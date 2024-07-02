@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --blue: hsl(243.46,41.94%,24.31%);
+  --yellow: hsl(48,92.89%,49.61%);
+  --yellow-light: hsl(44.71,100%,50%);
+}
