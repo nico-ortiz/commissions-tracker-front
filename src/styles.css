@@ -15,28 +15,7 @@ html {
   height: 100vh;
 }
 
-/* .montserrat-300 {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.montserrat-600 {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.montserrat-800 {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 800;
-  font-style: normal;
-} */
-
-/* .open-sans-400 {
+.open-sans-400 {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -45,6 +24,24 @@ html {
     "wdth" 100;
 }
 
+
+.open-sans-600 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.open-sans-500 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 
 .open-sans-700 {
   font-family: "Open Sans", sans-serif;
@@ -53,10 +50,10 @@ html {
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
-} */
+}
 
 
-.fredoka-300 {
+.fredoka-400 {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -65,8 +62,26 @@ html {
     "wdth" 100;
 }
 
+.fredoka-500 {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 
 .fredoka-600 {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.fredoka-700 {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
