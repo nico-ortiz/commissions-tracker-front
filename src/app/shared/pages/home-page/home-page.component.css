@@ -44,5 +44,51 @@
   font-size: 1.2rem;
   color: var(--blue);
   text-align: center;
+
+  position: relative;
+  width: 100%;
+  height: 110px;
 }
 
+.container .text-container .paraphs-container #paraph-1,
+.container .text-container .paraphs-container #paraph-2,
+.container .text-container .paraphs-container #paraph-3 {
+  opacity: 0;
+  position: absolute;
+  left: 100px;
+  width: 70%;
+  transition: opacity .5s ease-out;
+}
+
+.container .text-container .paraphs-container #paraph-1.active,
+.container .text-container .paraphs-container #paraph-2.active,
+.container .text-container .paraphs-container #paraph-3.active {
+  opacity: 1;
+}
+
+.container .text-container .btns-container {
+  width: 20%;
+  margin: 0 auto;
+  padding-top: 25px;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.container .text-container .btns-container .change-p-btns {
+  padding: 6px 6px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(160, 160, 160);
+  cursor: pointer;
+}
+
+.container .text-container .btns-container #btn-1.active,
+.container .text-container .btns-container #btn-2.active,
+.container .text-container .btns-container #btn-3.active {
+  background-color: var(--blue);
+}
+
+.container .text-container .btns-container .change-p-btns:active {
+  background-color: var(--blue);
+}
