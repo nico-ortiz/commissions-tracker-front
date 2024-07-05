@@ -71,6 +71,7 @@
   color: var(--blue);
   cursor: pointer;
   border-bottom: 5px solid transparent;
+  transition: all 0.5s ease-out;
 }
 
 .register-container .container-register-btn {
@@ -82,6 +83,7 @@
   align-items: center;
 
   cursor: pointer;
+  transition: all 0.5s ease-out;
 }
 
 .register-container .register-btn {
@@ -92,11 +94,13 @@
   font-size: 1.1rem;
   background-color: var(--yellow);
   color: white;
+  transition: all 0.5s ease-out;
 }
 
 .register-container .login-btn:hover {
-  font-weight: 700;
+  background: linear-gradient(0deg, rgba(39,36,88,1) 5%, rgba(255,255,255,1) 100%);
   border-bottom-color: var(--blue);
+  color: white;
 }
 
 .register-container .container-register-btn:hover {
