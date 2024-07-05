@@ -1,0 +1,62 @@
+<shared-header></shared-header>
+<section class="container">
+  <img
+    class="img-home-page"
+    src="../../../../assets/images/person-moving-house-furniture.png"
+    alt="image-home-page"
+  />
+  <div class="text-container">
+    <div class="title-container">
+      <!-- <h4 class="open-sans-700">COMISIONES</h4>
+      <h1 class="open-sans-700">JUA - NIC</h1> -->
+      <h4 class="open-sans-700">SERVICIO DE</h4>
+      <h1 class="open-sans-700">COMISIONES</h1>
+    </div>
+    <div class="paraphs-container open-sans-400">
+      <p
+        id="paraph-1"
+        [ngClass]="{'active': this.currentParagraph === 1}"
+      >
+        Paraph1 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        hendrerit urna et euismod aliquet. Ut ut augue eu nulla consequat
+        dignissim nec id erat. Sed non turpis non eros volutpat consectetur sed
+        quis dolor
+      </p>
+      <p
+        id="paraph-2"
+        [ngClass]="{'active': this.currentParagraph === 2}"
+      >
+        Paraph2 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        hendrerit urna et euismod aliquet. Ut ut augue eu nulla consequat
+        dignissim nec id erat. Sed non turpis non eros volutpat consectetur sed
+        quis dolor
+      </p>
+      <p
+        id="paraph-3"
+        [ngClass]="{'active': this.currentParagraph === 3}"
+      >
+        Paraph3 ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        hendrerit urna et euismod aliquet. Ut ut augue eu nulla consequat
+        dignissim nec id erat. Sed non turpis non eros volutpat consectetur sed
+        quis dolor
+      </p>
+    </div>
+    <div class="btns-container">
+      <button
+        id="btn-1"
+        class="change-p-btns"
+        (click)="showParagraph(1)"
+        [ngClass]="{'active':this.currentParagraph === 1}"></button>
+      <button
+        id="btn-2"
+        class="change-p-btns"
+        (click)="showParagraph(2)"
+        [ngClass]="{'active': this.currentParagraph === 2}"></button>
+      <button
+        id="btn-3"
+        class="change-p-btns"
+        (click)="showParagraph(3)"
+        [ngClass]="{'active': this.currentParagraph === 3}"></button>
+    </div>
+  </div>
+</section>
