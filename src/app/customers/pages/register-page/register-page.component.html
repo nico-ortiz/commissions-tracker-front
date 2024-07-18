@@ -1,0 +1,133 @@
+<h1 class="open-sans-700">Crear cuenta</h1>
+<hr>
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  class="register-form open-sans-400">
+  <div class="form-field-container">
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input
+        class="form-control"
+        formControlName="firstName"
+        id="nameInput"
+        placeholder="Nombre">
+      <span
+        *ngIf="isValidField('firstName')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('firstName')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="lastNameInput" class="form-label">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        id="lastNameInput"
+        placeholder="Apellido">
+      <span
+        *ngIf="isValidField('lastName')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('lastName')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="emailInput" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        id="emailInput"
+        placeholder="name@example.com">
+      <span
+        *ngIf="isValidField('email')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('email')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="passwordInput" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        id="passwordInput"
+        placeholder="Contraseña">
+      <span
+        *ngIf="isValidField('password')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('password')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="dniInput" class="form-label">DNI</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="dni"
+        id="dniInput"
+        placeholder="DNI">
+      <span
+        *ngIf="isValidField('dni')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('dni')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="cuitInput" class="form-label">CUIT</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="cuit"
+        id="cuitInput"
+        placeholder="CUIT">
+      <span
+        *ngIf="isValidField('cuit')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('cuit')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="phoneInput" class="form-label">Teléfono</label>
+      <input
+        type="tel"
+        class="form-control"
+        formControlName="phone"
+        id="phoneInput"
+        placeholder="Teléfono"
+        pattern="[0-9]{3}-[0-9]{1}-[0-9]{6}">
+      <span
+        *ngIf="isValidField('phone')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('phone')}}
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="addressInput" class="form-label">Dirección</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="address"
+        id="addressInput"
+        placeholder="Dirección">
+      <span
+        *ngIf="isValidField('address')"
+        class="form-error-text open-sans-400">
+          {{getFieldError('address')}}
+      </span>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="btn open-sans-600"
+    routerLink="/parcels/home">
+    Cancelar
+  </button>
+  <button
+    type="submit"
+    class="btn open-sans-600"
+    (click)="onSubmit()">
+    Crear cuenta
+  </button>
+</form>
