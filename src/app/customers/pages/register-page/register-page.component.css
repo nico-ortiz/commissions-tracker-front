@@ -29,12 +29,6 @@ h1 {
   border-bottom: 1px solid black;
 }
 
-.register-form .form-field-container .form-field .form-error-text {
-  font-size: .8rem;
-  color: red;
-  margin-top: 5px;
-}
-
 .register-form .form-field-container .form-field .form-control::placeholder {
   color: transparent;
   transition: all .1s ease-in;

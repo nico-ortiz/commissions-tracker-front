@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { phoneNumberValidator } from '../../phone-number.directive';
 
 @Component({
@@ -27,37 +27,9 @@ export class RegisterPageComponent {
     address: ['', [Validators.required, Validators.minLength(5)]]
   });
 
-  constructor(private fb: FormBuilder) {
-
-  }
-
-  isValidField(field: string): boolean | null {
-    return this.registerForm.controls[field].errors && this.registerForm.controls[field].touched;
-  }
-
-  public getFieldError(field: string): string | null {
-    if (!this.registerForm.controls[field]) return null;
-
-    const errors = this.registerForm.controls[field].errors || {};
-
-    for (const err of Object.keys(errors)) {
-      switch(err) {
-        case 'required':
-          return 'Este campo es requerido';
-        case 'minlength':
-          return `Mínimo ${errors['minlength'].requiredLength} caracteres`;
-        case 'maxlength':
-          return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
-        case 'email':
-          return 'Email no válido';
-        case 'pattern':
-          return 'La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula,\n'+
-           'un número y un caracter especial';
-      }
-    }
-
-    return null;
-  }
+  constructor(
+    private fb: FormBuilder
+  ) {}
 
   onSubmit(): void {
     if (this.registerForm.valid)

@@ -12,11 +12,10 @@
         formControlName="firstName"
         id="nameInput"
         placeholder="Nombre">
-      <span
-        *ngIf="isValidField('firstName')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('firstName')}}
-      </span>
+      <shared-error-field
+        field="firstName"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="lastNameInput" class="form-label">Apellido</label>
@@ -26,11 +25,10 @@
         formControlName="lastName"
         id="lastNameInput"
         placeholder="Apellido">
-      <span
-        *ngIf="isValidField('lastName')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('lastName')}}
-      </span>
+      <shared-error-field
+        field="lastName"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="emailInput" class="form-label">Email</label>
@@ -40,11 +38,10 @@
         formControlName="email"
         id="emailInput"
         placeholder="name@example.com">
-      <span
-        *ngIf="isValidField('email')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('email')}}
-      </span>
+      <shared-error-field
+        field="email"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="passwordInput" class="form-label">Contraseña</label>
@@ -54,11 +51,10 @@
         formControlName="password"
         id="passwordInput"
         placeholder="Contraseña">
-      <span
-        *ngIf="isValidField('password')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('password')}}
-      </span>
+      <shared-error-field
+        field="password"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="dniInput" class="form-label">DNI</label>
@@ -68,11 +64,10 @@
         formControlName="dni"
         id="dniInput"
         placeholder="DNI">
-      <span
-        *ngIf="isValidField('dni')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('dni')}}
-      </span>
+      <shared-error-field
+        field="dni"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="cuitInput" class="form-label">CUIT</label>
@@ -82,11 +77,10 @@
         formControlName="cuit"
         id="cuitInput"
         placeholder="CUIT">
-      <span
-        *ngIf="isValidField('cuit')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('cuit')}}
-      </span>
+      <shared-error-field
+        field="cuit"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="phoneInput" class="form-label">Teléfono</label>
@@ -97,11 +91,10 @@
         id="phoneInput"
         placeholder="Teléfono"
         pattern="[0-9]{3}-[0-9]{1}-[0-9]{6}">
-      <span
-        *ngIf="isValidField('phone')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('phone')}}
-      </span>
+      <shared-error-field
+        field="phone"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
     <div class="form-field">
       <label for="addressInput" class="form-label">Dirección</label>
@@ -111,11 +104,10 @@
         formControlName="address"
         id="addressInput"
         placeholder="Dirección">
-      <span
-        *ngIf="isValidField('address')"
-        class="form-error-text open-sans-400">
-          {{getFieldError('address')}}
-      </span>
+      <shared-error-field
+        field="address"
+        [form]="registerForm"
+      ></shared-error-field>
     </div>
   </div>
   <button

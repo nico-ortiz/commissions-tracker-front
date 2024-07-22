@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ControlConfig, FormBuilder, FormGroup } from '@angular/forms';
-import { ControlValidationsService } from '../../../customers/services/control-validations.service';
+import { FormGroup } from '@angular/forms';
+import { ControlValidationsService } from '../../services/control-validations.service';
 
 @Component({
   selector: 'shared-error-field',
