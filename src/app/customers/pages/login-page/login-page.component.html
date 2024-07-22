@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="login-form-container">
+    <h1 class="open-sans-700">Ingresar</h1>
+    <hr>
+    <form
+      class="login-form open-sans-400"
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin()">
+      <div class="form-field-container">
+        <div class="form-field">
+          <label for="emailInput" class="form-label open-sans-400">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            id="emailInput"
+            placeholder="Email">
+          <shared-error-field
+            field="email"
+            [form]="loginForm"
+          ></shared-error-field>
+        </div>
+        <div class="form-field">
+          <label for="passwordInput" class="form-label open-sans-400">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            id="passwordInput"
+            placeholder="Contraseña">
+          <shared-error-field
+            field="password"
+            [form]="loginForm"
+            ></shared-error-field>
+        </div>
+      </div>
+      <div class="btn-container">
+        <button class="btn open-sans-600">
+          Iniciar sesión
+        </button>
+        <ul class="open-sans-600">
+          <li routerLink="/auth/register">Crear cuenta</li>
+          <li routerLink="/home/parcels">Volver al inicio</li>
+        </ul>
+      </div>
+    </form>
+  </div>
+  <div class="image-container">
+    <img src="../../../../assets/images/person-moving-house-furniture.png" alt="login-image">
+  </div>
+</div>
