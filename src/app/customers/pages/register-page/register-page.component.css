@@ -1,0 +1,59 @@
+h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+.register-form .form-field-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+}
+
+.register-form .form-field-container .form-field {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
+
+.register-form .form-field-container .form-field .form-label {
+  margin-bottom: 10px;
+  font-size: .8rem;
+}
+
+.register-form .form-field-container .form-field .form-control {
+  width: 100%;
+  padding: 8px 2px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.register-form .form-field-container .form-field .form-control::placeholder {
+  color: transparent;
+  transition: all .1s ease-in;
+}
+
+.register-form .btn {
+  margin-top: 50px;
+  margin-left: 15px;
+  float: right;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 30px;
+  width: 25%;
+
+  font-size: 1.2rem;
+  background-color: var(--yellow);
+  color: white;
+  cursor: pointer;
+  transition: all .1s ease-in;
+}
+
+.register-form .btn:hover {
+  transform: scale(1.02);
+}
+
+.register-form .form-field-container .form-field .form-control:hover::placeholder {
+  color: rgb(150, 150, 150);
+}
