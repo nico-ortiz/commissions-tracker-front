@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ControlValidationsService } from '../../../shared/services/control-validations.service';
+import { CustomersService } from '../../services/customers.service';
+import { Observable, tap } from 'rxjs';
+import { Customer } from '../../interfaces/customer';
 
 @Component({
   selector: 'app-login-page',
@@ -17,9 +20,12 @@ export class LoginPageComponent {
     ]]
   });
 
+  public customers: Customer[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private controlValidationService: ControlValidationsService
+    private controlValidationService: ControlValidationsService,
+    private customerService: CustomersService
   ) {
   }
 

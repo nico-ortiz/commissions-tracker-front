@@ -87,12 +87,11 @@
       <input
         type="tel"
         class="form-control"
-        formControlName="phone"
+        formControlName="phoneNumber"
         id="phoneInput"
-        placeholder="Teléfono"
-        pattern="[0-9]{3}-[0-9]{1}-[0-9]{6}">
+        placeholder="Teléfono">
       <shared-error-field
-        field="phone"
+        field="phoneNumber"
         [form]="registerForm"
       ></shared-error-field>
     </div>
@@ -118,8 +117,7 @@
   </button>
   <button
     type="submit"
-    class="btn open-sans-600"
-    (click)="onSubmit()">
+    class="btn open-sans-600">
     Crear cuenta
   </button>
 </form>
