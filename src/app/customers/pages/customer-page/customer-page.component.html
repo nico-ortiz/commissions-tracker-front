@@ -1,7 +1,9 @@
-<h1 class="open-sans-700">Crear cuenta</h1>
+<h1 class="open-sans-700">
+  {{this.currentCustomer.customerId ? 'Editar cuenta' : 'Crear cuenta'}}
+</h1>
 <hr>
 <form
-  [formGroup]="registerForm"
+  [formGroup]="form"
   (ngSubmit)="onSubmit()"
   class="register-form open-sans-400">
   <div class="form-field-container">
@@ -14,7 +16,7 @@
         placeholder="Nombre">
       <shared-error-field
         field="firstName"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -27,7 +29,7 @@
         placeholder="Apellido">
       <shared-error-field
         field="lastName"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -40,7 +42,7 @@
         placeholder="name@example.com">
       <shared-error-field
         field="email"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -53,7 +55,7 @@
         placeholder="Contraseña">
       <shared-error-field
         field="password"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -66,7 +68,7 @@
         placeholder="DNI">
       <shared-error-field
         field="dni"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -79,7 +81,7 @@
         placeholder="CUIT">
       <shared-error-field
         field="cuit"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -92,7 +94,7 @@
         placeholder="Teléfono">
       <shared-error-field
         field="phoneNumber"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
     <div class="form-field">
@@ -105,7 +107,7 @@
         placeholder="Dirección">
       <shared-error-field
         field="address"
-        [form]="registerForm"
+        [form]="form"
       ></shared-error-field>
     </div>
   </div>
@@ -118,6 +120,6 @@
   <button
     type="submit"
     class="btn open-sans-600">
-    Crear cuenta
+    {{this.currentCustomer.customerId ? 'Editar cuenta' : 'Crear cuenta'}}
   </button>
 </form>

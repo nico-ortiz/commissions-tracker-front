@@ -40,4 +40,18 @@ export class CustomersService {
   public logout(): void {
     this.customer = undefined;
   }
+
+  public updateCustomer(newDataCustomer: Customer, customerId: string): Observable<Customer> {
+    return this.http.put<Customer>(`${this.baseUrl}/customers/update/${customerId}`, newDataCustomer)
+      .pipe(
+        tap(customer => this.customer = customer)
+      );
+  }
+
+  public getCustomerById(customerId: string): Observable<Customer> {
+    return this.http.get<Customer>(`${this.baseUrl}/customers/${customerId}`)
+      .pipe(
+        catchError(() => of())
+      );
+  }
 }
