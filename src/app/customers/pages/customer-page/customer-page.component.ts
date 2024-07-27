@@ -6,7 +6,9 @@ import { phoneNumberValidator } from '../../phone-number.directive';
 import { CustomersService } from '../../services/customers.service';
 import { Customer } from '../../interfaces/customer';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'pages-register-form',
@@ -33,7 +35,8 @@ export class CustomerPageComponent implements OnInit {
     private customerService: CustomersService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -67,12 +70,30 @@ export class CustomerPageComponent implements OnInit {
 
     this.customerService.registerCustomer(this.currentCustomer)
       .subscribe( customer => {
-        console.log(customer);
         this.showSnackbar(`${customer.email} created!`);
         setTimeout(() => {
           this.router.navigate(['/auth/edit', customer.customerId]);
         }, 3000);
       });
+  }
+
+  onDelete(): void {
+    if (!this.currentCustomer.customerId) throw Error('Customer id is required');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.form.value
+    })
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter(result => result),
+        switchMap(() => this.customerService.deleteCustomerById(this.currentCustomer.customerId)),
+        filter(wasDeleted => wasDeleted)
+      )
+      .subscribe(() => {
+        this.showSnackbar(`Account deleted!`);
+        this.router.navigate(['/']);
+      })
   }
 
   showSnackbar(message: string): void {

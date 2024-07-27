@@ -8,6 +8,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerPageComponent } from './pages/customer-page/customer-page.component';
 
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { CustomerPageComponent } from './pages/customer-page/customer-page.compo
   imports: [
     CommonModule,
     CustomersRoutingModule,
+    MatIconModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class CustomersModule { }

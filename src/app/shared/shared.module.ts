@@ -4,6 +4,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
 import { ErrorFieldComponent } from './components/error-field/error-field.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -12,10 +14,12 @@ import { ErrorFieldComponent } from './components/error-field/error-field.compon
     ErrorFieldComponent,
     HeaderComponent,
     HomePageComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    MatDialogModule
   ],
   exports: [
     ErrorFieldComponent,

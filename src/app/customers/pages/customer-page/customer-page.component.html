@@ -112,6 +112,13 @@
     </div>
   </div>
   <button
+    class="btn del-btn open-sans-600"
+    *ngIf="this.currentCustomer.customerId"
+    (click)="onDelete()">
+    Borrar cuenta
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+  </button>
+  <button
     type="button"
     class="btn open-sans-600"
     routerLink="/parcels/home">
@@ -121,5 +128,7 @@
     type="submit"
     class="btn open-sans-600">
     {{this.currentCustomer.customerId ? 'Editar cuenta' : 'Crear cuenta'}}
+    <mat-icon fontIcon="edit" *ngIf="this.currentCustomer.customerId"></mat-icon>
+    <mat-icon fontIcon="save" *ngIf="!this.currentCustomer.customerId"></mat-icon>
   </button>
 </form>
