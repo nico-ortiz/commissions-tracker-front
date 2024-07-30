@@ -11,13 +11,26 @@
     </ul>
   </nav>
   <div class="register-container">
-    <p class="login-btn open-sans-400">
+    <p
+      *ngIf="!getCustomer()"
+      class="login-btn open-sans-400"
+      routerLink="/auth/login">
       Ingresar
     </p>
-    <div class="container-register-btn">
+    <div
+      *ngIf="!getCustomer()"
+      class="container-register-btn"
+      routerLink="/auth/register">
       <p class="register-btn open-sans-600">
         Registrarse
       </p>
+    </div>
+    <div
+      *ngIf="getCustomer()"
+      class="container-logout-btn"
+      (click)="logout()">
+      <p class="logout-btn open-sans-600">
+        Cerrar sesión</p>
     </div>
   </div>
 </header>

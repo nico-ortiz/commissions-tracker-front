@@ -1,0 +1,134 @@
+<h1 class="open-sans-700">
+  {{this.currentCustomer.customerId ? 'Editar cuenta' : 'Crear cuenta'}}
+</h1>
+<hr>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="register-form open-sans-400">
+  <div class="form-field-container">
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input
+        class="form-control"
+        formControlName="firstName"
+        id="nameInput"
+        placeholder="Nombre">
+      <shared-error-field
+        field="firstName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="lastNameInput" class="form-label">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        id="lastNameInput"
+        placeholder="Apellido">
+      <shared-error-field
+        field="lastName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="emailInput" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        id="emailInput"
+        placeholder="name@example.com">
+      <shared-error-field
+        field="email"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="passwordInput" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        id="passwordInput"
+        placeholder="Contraseña">
+      <shared-error-field
+        field="password"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="dniInput" class="form-label">DNI</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="dni"
+        id="dniInput"
+        placeholder="DNI">
+      <shared-error-field
+        field="dni"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="cuitInput" class="form-label">CUIT</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="cuit"
+        id="cuitInput"
+        placeholder="CUIT">
+      <shared-error-field
+        field="cuit"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="phoneInput" class="form-label">Teléfono</label>
+      <input
+        type="tel"
+        class="form-control"
+        formControlName="phoneNumber"
+        id="phoneInput"
+        placeholder="Teléfono">
+      <shared-error-field
+        field="phoneNumber"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="addressInput" class="form-label">Dirección</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="address"
+        id="addressInput"
+        placeholder="Dirección">
+      <shared-error-field
+        field="address"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+  </div>
+  <button
+    class="btn del-btn open-sans-600"
+    *ngIf="this.currentCustomer.customerId"
+    (click)="onDelete()">
+    Borrar cuenta
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+  </button>
+  <button
+    type="button"
+    class="btn open-sans-600"
+    routerLink="/parcels/home">
+    Cancelar
+  </button>
+  <button
+    type="submit"
+    class="btn open-sans-600">
+    {{this.currentCustomer.customerId ? 'Editar cuenta' : 'Crear cuenta'}}
+    <mat-icon fontIcon="edit" *ngIf="this.currentCustomer.customerId"></mat-icon>
+    <mat-icon fontIcon="save" *ngIf="!this.currentCustomer.customerId"></mat-icon>
+  </button>
+</form>

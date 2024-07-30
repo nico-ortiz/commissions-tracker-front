@@ -1,0 +1,92 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+}
+
+.container .login-form-container > h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+.container .login-form-container .login-form  {
+  padding: 50px 20px;
+}
+
+.container .login-form-container .login-form .form-field-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  margin-bottom: 30%;
+  height: 100px;
+}
+
+.container .login-form-container .login-form .form-field-container .form-field {
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container .login-form-container .login-form .form-field-container .form-field .form-label {
+  margin-bottom: 10px;
+  font-size: .8rem;
+}
+
+.container .login-form-container .login-form .form-field-container .form-field .form-control {
+  width: 100%;
+  padding: 8px 2px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.container .login-form-container .login-form .form-field-container .form-field .form-control::placeholder {
+  color: transparent;
+  transition: all .1s ease-in;
+}
+
+.container .login-form-container .login-form .form-field-container .form-field .form-control:hover::placeholder {
+  color: rgb(150, 150, 150);
+}
+
+.container .login-form-container .login-form .btn-container {
+  display:  grid;
+}
+
+.container .login-form-container .login-form .btn-container .btn {
+  justify-self: center;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 30px;
+  width: 60%;
+
+  font-size: 1.2rem;
+  background-color: var(--yellow);
+  color: white;
+  cursor: pointer;
+  transition: all .1s ease-in;
+}
+
+.container .login-form-container .login-form .btn-container > ul {
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  list-style: none;
+  padding: 0;
+  color: red;
+  font-size: .9rem;
+}
+
+.container .login-form-container .login-form .btn-container > ul > li {
+  cursor: pointer;
+}
+
+.container .image-container > img {
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
