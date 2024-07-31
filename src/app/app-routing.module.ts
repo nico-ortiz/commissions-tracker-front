@@ -11,8 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./parcels/parcels.module').then(m => m.ParcelsModule)
   },
   {
+    path: 'home',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
+  },
+  {
     path: '**',
-    redirectTo: 'parcels',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 ];

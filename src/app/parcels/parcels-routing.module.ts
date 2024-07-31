@@ -9,10 +9,6 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       {
-        path: 'home',
-        component: HomePageComponent
-      },
-      {
         path: '**',
         redirectTo: 'home'
       }

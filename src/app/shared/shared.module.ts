@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ErrorFieldComponent } from './components/error-field/error-field.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedRoutingModule } from './shared-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedRoutingModule
   ],
   exports: [
     ErrorFieldComponent,
