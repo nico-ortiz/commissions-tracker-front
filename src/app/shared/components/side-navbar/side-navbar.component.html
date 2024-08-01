@@ -1,0 +1,44 @@
+<div
+  class="side-navbar-container"
+  *ngIf="getToggleBtnStatus()">
+  <nav
+    class="side-navbar">
+    <button
+      class="close-btn"
+      (click)="onToggleBtnStatus()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <ul class="container-links">
+      <li class="nav-links">
+        <a routerLink="/home">
+          <mat-icon fontIcon="home"></mat-icon> Inicio
+        </a>
+      </li>
+      <li class="nav-links">
+        <a routerLink="/parcels/quote">
+          <mat-icon fontIcon="attach_money"></mat-icon> Cotizar envio
+        </a>
+      </li>
+      <li class="nav-links">
+        <a routerLink="/parcels/make-parcel">
+          <mat-icon fontIcon="local_shipping"></mat-icon> Hacer envio
+        </a>
+      </li>
+      <li class="nav-links">
+        <a routerLink="/parcels/tracking-parcel">
+          <mat-icon fontIcon="access_time"></mat-icon> Seguir envio
+        </a>
+      </li>
+      <li class="nav-links">
+        <a routerLink="">
+          <mat-icon fontIcon="account_circle"></mat-icon> Mi perfil
+        </a>
+      </li>
+      <li class="nav-links">
+        <a href="">
+          <mat-icon fontIcon="logout"></mat-icon> Cerrar sesion
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
