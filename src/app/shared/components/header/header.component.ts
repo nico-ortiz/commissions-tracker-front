@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CustomersService } from '../../../customers/services/customers.service';
 import { Customer } from '../../../customers/interfaces/customer';
+import { ToggleButtonService } from '../../services/toggle-button.service';
 
 @Component({
   selector: 'shared-header',
@@ -10,7 +11,8 @@ import { Customer } from '../../../customers/interfaces/customer';
 export class HeaderComponent {
 
   constructor(
-    private customer: CustomersService
+    private customer: CustomersService,
+    private toggleBtn: ToggleButtonService
   ) {}
 
   public getCustomer(): Customer | undefined {
@@ -19,5 +21,13 @@ export class HeaderComponent {
 
   public logout(): void {
     this.customer.logout();
+  }
+
+  public toggleBtnStatus(): boolean {
+    return this.toggleBtn.getSideNavbarActive;
+  }
+
+  public onToggleBtnStatus(): void {
+    this.toggleBtn.toggleSideNavBar();
   }
 }

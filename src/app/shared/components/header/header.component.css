@@ -20,6 +20,25 @@
   margin-right: 50px;
 }
 
+.header .side-navbar-btn {
+  display: none;
+}
+
+.header.side-navbar .side-navbar-btn {
+  display: block;
+  border: none;
+  background-color: transparent;
+}
+
+.header.side-navbar .menu-icon {
+  transform: scale(2);
+  color: var(--yellow);
+}
+
+.header.side-navbar .navbar {
+  display: none;
+}
+
 .navbar > ul {
   display: flex;
 

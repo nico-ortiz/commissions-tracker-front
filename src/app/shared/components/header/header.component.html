@@ -1,12 +1,20 @@
-<header class="header">
+<header
+  class="header"
+  [ngClass]="{'side-navbar': toggleBtnStatus()}">
+  <button
+    class="side-navbar-btn"
+    (click)="onToggleBtnStatus()">
+    <mat-icon class="menu-icon">menu</mat-icon>
+  </button>
   <img
     src="../../../../assets/images/logo-orange-red-resize.png"
     class="logo"
     alt="logo">
   <nav class="navbar">
     <ul class="open-sans-400">
-      <li class="nav-links"><a href="" title="Realizar envio">Hacer envio</a></li>
-      <li class="nav-links"><a href="" title="Seguimiento de envio">Seguir envio</a></li>
+      <li class="nav-links"><a routerLink="/parcels/quote" title="Cotizar envio">Cotizar envio</a></li>
+      <li class="nav-links"><a routerLink="/parcels/make-parcel" title="Realizar envio">Hacer envio</a></li>
+      <li class="nav-links"><a routerLink="/parcels/tracking-parcel" title="Seguimiento de envio">Seguir envio</a></li>
       <li class="nav-links"><a href="" title="Preguntas frecuentes">Ayuda</a></li>
     </ul>
   </nav>

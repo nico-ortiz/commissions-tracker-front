@@ -7,6 +7,8 @@ import { ErrorFieldComponent } from './components/error-field/error-field.compon
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedRoutingModule } from './shared-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 
 
 
@@ -16,17 +18,20 @@ import { SharedRoutingModule } from './shared-routing.module';
     HeaderComponent,
     HomePageComponent,
     ConfirmDialogComponent,
+    SideNavbarComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatDialogModule,
+    MatIconModule,
     SharedRoutingModule
   ],
   exports: [
     ErrorFieldComponent,
     HeaderComponent,
-    HomePageComponent
+    HomePageComponent,
+    SideNavbarComponent
   ]
 })
 export class SharedModule { }
