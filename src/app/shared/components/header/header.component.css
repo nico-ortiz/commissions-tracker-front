@@ -33,6 +33,8 @@
 .header.side-navbar .menu-icon {
   transform: scale(2);
   color: var(--yellow);
+  cursor: pointer;
+  transition: .2s ease-in;
 }
 
 .header.side-navbar .navbar {
@@ -131,4 +133,8 @@
 
   color: var(--yellow);
   background-color: white;
+}
+
+.header.side-navbar .menu-icon:hover {
+  color: red;
 }

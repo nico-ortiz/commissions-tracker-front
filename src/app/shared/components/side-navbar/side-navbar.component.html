@@ -1,43 +1,55 @@
 <div
   class="side-navbar-container"
-  *ngIf="getToggleBtnStatus()">
+  *ngIf="getToggleBtnStatus()"
+  [@enterAnimation]
+  >
   <nav
     class="side-navbar">
     <button
       class="close-btn"
       (click)="onToggleBtnStatus()">
-      <mat-icon>close</mat-icon>
+      <mat-icon class="close-menu-icon">close</mat-icon>
     </button>
-    <ul class="container-links">
-      <li class="nav-links">
-        <a routerLink="/home">
-          <mat-icon fontIcon="home"></mat-icon> Inicio
-        </a>
+    <ul class="container-links" >
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/home"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="home"></mat-icon> Inicio
       </li>
-      <li class="nav-links">
-        <a routerLink="/parcels/quote">
-          <mat-icon fontIcon="attach_money"></mat-icon> Cotizar envio
-        </a>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/parcels/quote"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="attach_money"></mat-icon> Cotizar envio
       </li>
-      <li class="nav-links">
-        <a routerLink="/parcels/make-parcel">
-          <mat-icon fontIcon="local_shipping"></mat-icon> Hacer envio
-        </a>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/parcels/make-parcel"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="local_shipping"></mat-icon> Hacer envio
       </li>
-      <li class="nav-links">
-        <a routerLink="/parcels/tracking-parcel">
-          <mat-icon fontIcon="access_time"></mat-icon> Seguir envio
-        </a>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/parcels/tracking-parcel"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="access_time"></mat-icon> Seguir envio
       </li>
-      <li class="nav-links">
-        <a routerLink="">
-          <mat-icon fontIcon="account_circle"></mat-icon> Mi perfil
-        </a>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/home"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="account_circle"></mat-icon> Mi perfil
       </li>
-      <li class="nav-links">
-        <a href="">
-          <mat-icon fontIcon="logout"></mat-icon> Cerrar sesion
-        </a>
+      <li
+        class="nav-links open-sans-600"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="logout"></mat-icon> Cerrar sesion
       </li>
     </ul>
   </nav>

@@ -1,11 +1,14 @@
 .side-navbar-container {
   position: absolute;
-  z-index: 1;
 
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   top: 0;
-  background-color: black;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  transform: none;
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .side-navbar-container .side-navbar {
@@ -13,7 +16,72 @@
   width: 20%;
   height: 100vh;
   top: 0;
-  z-index: 2;
+  background-color: white;
 
-  background-color: yellow;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-navbar-container .side-navbar .close-btn {
+  border: none;
+  background-color: transparent;
+
+  margin-bottom: 20px;
+}
+
+.side-navbar-container .side-navbar .close-btn .close-menu-icon {
+  transform: scale(2);
+  color: var(--yellow);
+  cursor: pointer;
+  transition: .5s ease-out;
+}
+
+.side-navbar-container .side-navbar .container-links {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.side-navbar-container .side-navbar .container-links .nav-links:nth-child(1) {
+  border-top: 1px solid rgb(231, 229, 229);
+}
+
+.side-navbar-container .side-navbar .container-links .nav-links {
+  list-style: none;
+  border-bottom: 1px solid rgb(231, 229, 229);
+  padding: 5px 0 5px 5px;
+  width: 100%;
+  transition: .5s ease-out;
+  border-right: 5px solid transparent;
+  cursor: pointer;
+  color: var(--blue);
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 5px;
+  align-items: flex-end;
+}
+
+.side-navbar-container .side-navbar .container-links .active {
+  background-color: var(--blue);
+  color: white;
+}
+
+.side-navbar-container .side-navbar .container-links .nav-links .nav-links-icons {
+  padding-right: 15px;
+}
+
+.side-navbar-container .side-navbar .close-btn .close-menu-icon:hover {
+  color: var(--dark-yellow);
+}
+
+.side-navbar-container .side-navbar .container-links .nav-links:hover {
+  border-right-color: var(--blue);
+  background-color: var(--very-light-blue);
+}
+
+.side-navbar-container .side-navbar .container-links .active:hover {
+  background-color: var(--blue);
+  color: white;
 }

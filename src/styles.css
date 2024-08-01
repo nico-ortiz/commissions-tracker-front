@@ -2,8 +2,11 @@
 :root {
   --blue: hsl(243.46,41.94%,24.31%);
   --blue-light: hsl(242, 48%, 57%);
+  --very-light-blue: #bedae6;
+  --dark-yellow: hsl(48, 98%, 35%);
   --yellow: hsl(48,92.89%,49.61%);
   --yellow-light: hsl(44.71,100%,50%);
+  --yellow-very-light: hsl(45, 100%, 80%);
 }
 
 * {
