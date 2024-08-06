@@ -1,0 +1,93 @@
+h1 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+
+.form {
+  padding: 20px 0;
+}
+
+.form .form-title {
+  margin-bottom: 10px;
+}
+
+.form .form-field-container {
+  display: grid;
+  grid-template-areas:
+    "one two"
+    "three four"
+    "five six";
+
+  grid-auto-columns: 1fr;
+  column-gap: 30px;
+}
+
+.form .form-field-container:nth-child(1) {
+  grid-area: one;
+}
+
+.form .form-field-container:nth-child(2) {
+  grid-area: two;
+}
+
+.form .form-field-container:nth-child(3) {
+  grid-area: three;
+}
+
+.form .form-field-container:nth-child(4) {
+  grid-area: four;
+}
+
+.form .form-field-container:nth-child(5) {
+  grid-area: five;
+}
+
+.form .form-field-container .form-field {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+}
+
+.form .form-field-container:nth-child(6),
+.form .form-field-container .times-container {
+  grid-area: six;
+
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form .form-field-container .form-field .form-label {
+  margin-bottom: 10px;
+  font-size: .8rem;
+}
+
+.form .form-field-container .form-field .form-control {
+  width: 100%;
+  padding: 8px 2px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.form .form-field-container .times-container .opening-time-container,
+.form .form-field-container .times-container .closing-time-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.form .form-field-container .times-container .opening-time-container .form-label,
+.form .form-field-container .times-container .closing-time-container .form-label {
+  margin-bottom: 10px;
+  font-size: .8rem;
+}
+
+.form .form-field-container .form-field .form-control::placeholder {
+  color: transparent;
+  transition: all .1s ease-in;
+}
+
+.form .form-field-container .form-field .form-control:hover::placeholder {
+  color: rgb(150, 150, 150);
+}

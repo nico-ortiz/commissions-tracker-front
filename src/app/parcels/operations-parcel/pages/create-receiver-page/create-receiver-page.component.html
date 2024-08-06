@@ -1,0 +1,66 @@
+<h1 class="title open-sans-700">Rellene datos para realizar encomienda</h1>
+<hr>
+<form class="form" [formGroup]="form">
+  <h3 class="form-title open-sans-500">Datos del destinatario</h3>
+  <hr>
+  <div class="form-field-container">
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="firstName" placeholder="Nombre">
+      <shared-error-field
+        field="firstName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Apellido</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="lastName" placeholder="Apellido">
+      <shared-error-field
+        field="lastName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Dirección</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="address" placeholder="Dirección">
+      <shared-error-field
+        field="address"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Télefono</label>
+      <input id="nameImput" type="tel" class="form-control" formControlName="phoneNumber" placeholder="Télefono">
+      <shared-error-field
+        field="phoneNumber"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Fecha a realizar</label>
+      <input id="nameImput" type="date" [min]="today" class="form-control" formControlName="date" placeholder="Fecha">
+      <shared-error-field
+        field="date"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field times-container">
+      <div class="opening-time-container">
+        <label for="nameInput" class="form-label">Horario de apertura</label>
+        <input id="nameImput" type="time" class="form-control" formControlName="openingTime" placeholder="Horario de apertura">
+        <shared-error-field
+        field="openingTime"
+        [form]="form"
+      ></shared-error-field>
+      </div>
+      <div class="closing-time-container">
+        <label for="nameInput" class="form-label">Horario de cierre</label>
+        <input id="nameImput" type="time" class="form-control" formControlName="closingTime" placeholder="Horario de cierre">
+        <shared-error-field
+        field="closingTime"
+        [form]="form"
+      ></shared-error-field>
+      </div>
+    </div>
+  </div>
+</form>
