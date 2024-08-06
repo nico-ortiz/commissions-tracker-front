@@ -136,5 +136,5 @@
 }
 
 .header.side-navbar .menu-icon:hover {
-  color: red;
+  color: var(--dark-yellow);
 }

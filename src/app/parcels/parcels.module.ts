@@ -8,6 +8,7 @@ import { MakeParcelPageComponent } from './pages/make-parcel-page/make-parcel-pa
 import { QuoteParcelPageComponent } from './pages/quote-parcel-page/quote-parcel-page.component';
 import { TrackingParcelPageComponent } from './pages/tracking-parcel-page/tracking-parcel-page.component';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatIconModule,
     ParcelsRoutingModule,
     SharedModule,

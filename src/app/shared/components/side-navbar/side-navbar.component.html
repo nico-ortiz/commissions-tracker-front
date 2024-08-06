@@ -2,6 +2,7 @@
   class="side-navbar-container"
   *ngIf="getToggleBtnStatus()"
   [@enterAnimation]
+  (click)="onToggleBtnStatus()"
   >
   <nav
     class="side-navbar">
