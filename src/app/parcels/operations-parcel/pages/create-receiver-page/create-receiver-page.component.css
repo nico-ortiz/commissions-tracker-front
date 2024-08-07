@@ -91,3 +91,47 @@ h1 {
 .form .form-field-container .form-field .form-control:hover::placeholder {
   color: rgb(150, 150, 150);
 }
+
+.form .btns-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form .btns-container .btn {
+  margin-top: 70px;
+  margin-left: 30px;
+  float: right;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 30px;
+  width: 20%;
+  position: relative;
+
+  font-size: 1.2rem;
+  background-color: var(--yellow);
+  color: white;
+  cursor: pointer;
+  transition: all .1s ease-in;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form .btns-container .btn:disabled {
+  opacity: .4;
+  cursor: auto;
+}
+
+.form .btns-container .btn > mat-icon {
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
+.form .btns-container .btn:hover {
+  transform: scale(1.02);
+}
+
+.form .btns-container .btn:disabled:hover {
+  transform: none;
+}

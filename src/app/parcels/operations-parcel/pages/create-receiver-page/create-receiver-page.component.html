@@ -1,6 +1,11 @@
-<h1 class="title open-sans-700">Rellene datos para realizar encomienda</h1>
+<h1 class="title open-sans-700">
+  {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede actualizar los datos del destinatario"}}
+</h1>
 <hr>
-<form class="form" [formGroup]="form">
+<form
+  class="form"
+  [formGroup]="form"
+  (submit)="onSubmit()">
   <h3 class="form-title open-sans-500">Datos del destinatario</h3>
   <hr>
   <div class="form-field-container">
@@ -47,20 +52,47 @@
     <div class="form-field times-container">
       <div class="opening-time-container">
         <label for="nameInput" class="form-label">Horario de apertura</label>
-        <input id="nameImput" type="time" class="form-control" formControlName="openingTime" placeholder="Horario de apertura">
+        <input id="nameImput" type="time" class="form-control" formControlName="openingHour" placeholder="Horario de apertura">
         <shared-error-field
-        field="openingTime"
+        field="openingHour"
         [form]="form"
       ></shared-error-field>
       </div>
       <div class="closing-time-container">
         <label for="nameInput" class="form-label">Horario de cierre</label>
-        <input id="nameImput" type="time" class="form-control" formControlName="closingTime" placeholder="Horario de cierre">
+        <input id="nameImput" type="time" class="form-control" formControlName="closingHour" placeholder="Horario de cierre">
         <shared-error-field
-        field="closingTime"
+        field="closingHour"
         [form]="form"
       ></shared-error-field>
       </div>
     </div>
+  </div>
+  <div class="btns-container">
+    <button
+      *ngIf="getCurrentReceiver.receiverId"
+      type="button"
+      [disabled]="!isValidForm || isPristineForm"
+      class="btn open-sans-600"
+      (click)="onSubmit()">
+      Modificar
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      *ngIf="!getCurrentReceiver.receiverId"
+      type="submit"
+      [disabled]="!isValidForm"
+      class="btn open-sans-600"
+      (click)="onSubmit()">
+      Guardar
+      <mat-icon>save</mat-icon>
+    </button>
+    <button
+      type="button"
+      [disabled]="!getCurrentReceiver.receiverId"
+      class="btn open-sans-600">
+      Continuar
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
   </div>
 </form>

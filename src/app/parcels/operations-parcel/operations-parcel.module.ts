@@ -7,6 +7,7 @@ import { CreateReceiverPageComponent } from './pages/create-receiver-page/create
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { OperationsParcelRoutingModule } from './operations-parcel-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { MatIcon } from '@angular/material/icon';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   imports: [
     CommonModule,
+    MatIcon,
     OperationsParcelRoutingModule,
     ReactiveFormsModule,
     SharedModule

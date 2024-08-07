@@ -14,6 +14,10 @@ const routes: Routes = [
     component: CreateReceiverPageComponent,
   },
   {
+    path: 'edit-receiver/:id',
+    component: CreateReceiverPageComponent
+  },
+  {
     path: 'create-packages',
     component: CreatePackagePageComponent,
   },

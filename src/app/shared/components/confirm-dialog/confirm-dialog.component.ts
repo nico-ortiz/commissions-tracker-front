@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef } from '@angular/material/dialog';
 import { Customer } from '../../../customers/interfaces/customer';
 
 @Component({
@@ -9,7 +9,7 @@ import { Customer } from '../../../customers/interfaces/customer';
 })
 export class ConfirmDialogComponent {
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Customer,
+    @Inject(MAT_DIALOG_DATA) public data: Customer
   ) {
 
   }
