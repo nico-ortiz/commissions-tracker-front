@@ -9,6 +9,9 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
 import { phoneNumberValidator } from '../../../../customers/phone-number.directive';
 import { Receiver } from '../../interfaces/receiver.interface';
 import { ReceiverService } from '../../services/receiver.service';
+import { ParcelService } from '../../services/parcel.service';
+import { Parcel } from '../../interfaces/parcel.interface';
+import { NewParcel } from '../../interfaces/new-parcel.interface';
 
 @Component({
   selector: 'operation-create-receiver-page',
@@ -29,14 +32,16 @@ export class CreateReceiverPageComponent implements OnInit {
 
   public today!: string;
   private receiver!: Receiver;
+  private parcel!: Parcel;
 
   constructor(
-    private fb: FormBuilder,
-    private receiverService: ReceiverService,
-    private snackBar: MatSnackBar,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
+    private router: Router,
+    private fb: FormBuilder,
+    private parcelService: ParcelService,
+    private receiverService: ReceiverService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -93,13 +98,27 @@ export class CreateReceiverPageComponent implements OnInit {
 
     this.receiverService.createReceiver(this.getCurrentReceiver)
       .subscribe(receiver => {
-        console.log(receiver);
         this.showSnackbar(`Destinatario añadido correctamente!`);
         setTimeout(() => {
           this.router.navigate(['/parcels/make-parcel/edit-receiver', receiver.receiverId]);
         }, 3000)
       })
+
+    // this.createParcel();
   }
+
+  createParcel(customerId: string, receiverId: string): void {
+    const newParcel: NewParcel = {
+      description: "",
+      customerId,
+      receiverId
+    };
+
+    this.parcelService.createParcel(newParcel)
+    //Deberia guardarlo en localstorage?
+      .subscribe(parcel => this.parcel = parcel);
+  }
+
 
   showSnackbar(message: string): void {
     this.snackBar.open(message, 'done', {

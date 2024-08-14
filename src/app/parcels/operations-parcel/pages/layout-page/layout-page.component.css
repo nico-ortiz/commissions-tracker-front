@@ -1,0 +1,15 @@
+h1 {
+  margin: 50px 0 100px 0;
+  text-align: center;
+  color: var(--blue);
+}
+
+.choose-package-type {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  place-items: center;
+
+  margin: 0 100px;
+  padding-bottom: 50px;
+}
