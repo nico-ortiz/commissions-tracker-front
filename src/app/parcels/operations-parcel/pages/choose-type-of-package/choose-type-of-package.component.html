@@ -1,0 +1,21 @@
+<shared-back-button [routerLink]="getPath()"></shared-back-button>
+<h1
+  class="open-sans-700"
+  >Que tipo de encomienda va a enviar?</h1>
+<section class="choose-package-type">
+  <operation-package-type
+    title="Sobres"
+    urlImage="../../assets/images/icons8-envelope-64.png"
+    link="/parcels/make-parcel/create-packages/add-envelope"
+  ></operation-package-type>
+  <operation-package-type
+    title="Paquetes"
+    urlImage="../../assets/images/icons8-package-64.png"
+    link="/parcels/make-parcel/create-packages/add-package"
+  ></operation-package-type>
+  <operation-package-type
+    title="Encomiendas grandes"
+    urlImage="../../assets/images/icons8-appliances-80.png"
+    link="/parcels/make-parcel/create-packages/add-appliance"
+  ></operation-package-type>
+</section>
