@@ -1,3 +1,4 @@
+<shared-back-button routerLink="/home"></shared-back-button>
 <h1 class="title open-sans-700">
   {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede actualizar los datos del destinatario"}}
 </h1>
@@ -82,8 +83,7 @@
       *ngIf="!getCurrentReceiver.receiverId"
       type="submit"
       [disabled]="!isValidForm"
-      class="btn open-sans-600"
-      (click)="onSubmit()">
+      class="btn open-sans-600">
       Guardar
       <mat-icon>save</mat-icon>
     </button>
@@ -91,7 +91,7 @@
       type="button"
       [disabled]="!getCurrentReceiver.receiverId"
       class="btn open-sans-600"
-      routerLink="/parcels/make-parcel/create-packages">
+      routerLink="/parcels/make-parcel/create-packages/choose-type-of-package">
       Continuar
       <mat-icon>arrow_forward</mat-icon>
     </button>

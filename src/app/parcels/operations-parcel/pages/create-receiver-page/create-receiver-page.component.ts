@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { filter, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,8 +10,10 @@ import { phoneNumberValidator } from '../../../../customers/phone-number.directi
 import { Receiver } from '../../interfaces/receiver.interface';
 import { ReceiverService } from '../../services/receiver.service';
 import { ParcelService } from '../../services/parcel.service';
-import { Parcel } from '../../interfaces/parcel.interface';
-import { NewParcel } from '../../interfaces/new-parcel.interface';
+import { Commission } from '../../interfaces/commission.interface';
+import { NewCommission } from '../../interfaces/new-commission.interface';
+import { Customer } from '../../../../customers/interfaces/customer';
+import { CustomersService } from '../../../../customers/services/customers.service';
 
 @Component({
   selector: 'operation-create-receiver-page',
@@ -32,12 +34,13 @@ export class CreateReceiverPageComponent implements OnInit {
 
   public today!: string;
   private receiver!: Receiver;
-  private parcel!: Parcel;
+  private commission!: NewCommission;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private customerService: CustomersService,
     private parcelService: ParcelService,
     private receiverService: ReceiverService,
     private dialog: MatDialog,
@@ -98,25 +101,26 @@ export class CreateReceiverPageComponent implements OnInit {
 
     this.receiverService.createReceiver(this.getCurrentReceiver)
       .subscribe(receiver => {
+        this.receiver = receiver;
+        this.createParcel();
         this.showSnackbar(`Destinatario añadido correctamente!`);
         setTimeout(() => {
           this.router.navigate(['/parcels/make-parcel/edit-receiver', receiver.receiverId]);
         }, 3000)
       })
-
-    // this.createParcel();
   }
 
-  createParcel(customerId: string, receiverId: string): void {
-    const newParcel: NewParcel = {
-      description: "",
-      customerId,
-      receiverId
+  createParcel(): void {
+    const commission: NewCommission = {
+      description: "a",
+      // customerId: this.customerService.getCustomer.customerId,
+      customerId: '1',
+      // receiverId: this.receiver.receiverId
+      receiverId: '1',
     };
 
-    this.parcelService.createParcel(newParcel)
-    //Deberia guardarlo en localstorage?
-      .subscribe(parcel => this.parcel = parcel);
+    this.parcelService.createCommission(commission)
+      .subscribe();
   }
 
 

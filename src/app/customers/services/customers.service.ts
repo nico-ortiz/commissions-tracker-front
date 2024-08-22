@@ -11,7 +11,7 @@ export class CustomersService {
 
   private baseUrl: string = environments.baseUrl;
 
-  private customer?: Customer;
+  private customer!: Customer;
 
   constructor(
     private http: HttpClient
@@ -21,6 +21,10 @@ export class CustomersService {
     if (!this.customer) return undefined;
 
     return structuredClone(this.customer);
+  }
+
+  get getCustomer(): Customer {
+    return this.customer;
   }
 
   public getCustomers(): Observable<Customer[]> {
@@ -35,10 +39,6 @@ export class CustomersService {
       .pipe(
         tap(customer => this.customer = customer)
       );
-  }
-
-  public logout(): void {
-    this.customer = undefined;
   }
 
   public updateCustomer(newDataCustomer: Customer, customerId: string): Observable<Customer> {
