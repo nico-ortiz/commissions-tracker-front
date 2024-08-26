@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SharedRoutingModule } from './shared-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 
 
@@ -19,6 +20,7 @@ import { SideNavbarComponent } from './components/side-navbar/side-navbar.compon
     HomePageComponent,
     ConfirmDialogComponent,
     SideNavbarComponent,
+    BackButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -28,10 +30,11 @@ import { SideNavbarComponent } from './components/side-navbar/side-navbar.compon
     SharedRoutingModule
   ],
   exports: [
+    BackButtonComponent,
     ErrorFieldComponent,
     HeaderComponent,
     HomePageComponent,
-    SideNavbarComponent
+    SideNavbarComponent,
   ]
 })
 export class SharedModule { }

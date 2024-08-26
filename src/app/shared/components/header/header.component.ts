@@ -20,7 +20,7 @@ export class HeaderComponent {
   }
 
   public logout(): void {
-    this.customer.logout();
+    // this.customer.logout();
   }
 
   public toggleBtnStatus(): boolean {

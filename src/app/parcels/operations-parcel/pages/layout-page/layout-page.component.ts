@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ReceiverService } from '../../services/receiver.service';
+import { Receiver } from '../../interfaces/receiver.interface';
 
 @Component({
   selector: 'app-layout-page',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class LayoutPageComponent {
 
+  constructor(
+    private receiverService: ReceiverService
+  ) {
+  }
+
+  public getReceiver(): Receiver {
+    return this.receiverService.getReceiver;
+  }
 }

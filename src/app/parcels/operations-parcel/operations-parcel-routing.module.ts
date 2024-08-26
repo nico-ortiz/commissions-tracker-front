@@ -5,6 +5,8 @@ import { CreateReceiverPageComponent } from './pages/create-receiver-page/create
 import { CreatePackagePageComponent } from './pages/create-package-page/create-package-page.component';
 import { CreateEnvelopeParcelPageComponent } from './pages/create-envelope-parcel-page/create-envelope-parcel-page.component';
 import { CreateApplianceParcelPageComponent } from './pages/create-appliance-parcel-page/create-appliance-parcel-page.component';
+import { ChooseTypeOfPackageComponent } from './pages/choose-type-of-package/choose-type-of-package.component';
+import { ListOfPackagesComponent } from './pages/list-of-packages/list-of-packages.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,14 @@ const routes: Routes = [
       {
         path: 'add-appliance',
         component: CreateApplianceParcelPageComponent,
+      },
+      {
+        path: 'choose-type-of-package',
+        component: ChooseTypeOfPackageComponent,
+      },
+      {
+        path: 'list-of-packages',
+        component: ListOfPackagesComponent
       }
     ]
   },

@@ -14,6 +14,7 @@ import { Commission } from '../../interfaces/commission.interface';
 import { NewCommission } from '../../interfaces/new-commission.interface';
 import { Customer } from '../../../../customers/interfaces/customer';
 import { CustomersService } from '../../../../customers/services/customers.service';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'operation-create-receiver-page',
@@ -35,16 +36,17 @@ export class CreateReceiverPageComponent implements OnInit {
   public today!: string;
   private receiver!: Receiver;
   private commission!: NewCommission;
+  public clicked: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private customerService: CustomersService,
     private parcelService: ParcelService,
     private receiverService: ReceiverService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private localStorage: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -105,7 +107,7 @@ export class CreateReceiverPageComponent implements OnInit {
         this.createParcel();
         this.showSnackbar(`Destinatario añadido correctamente!`);
         setTimeout(() => {
-          this.router.navigate(['/parcels/make-parcel/edit-receiver', receiver.receiverId]);
+          this.router.navigate(['/parcels/make-parcel/edit-receiver', this.localStorage.getEncryptedData("receiverId")]);
         }, 3000)
       })
   }
@@ -116,7 +118,8 @@ export class CreateReceiverPageComponent implements OnInit {
       // customerId: this.customerService.getCustomer.customerId,
       customerId: '1',
       // receiverId: this.receiver.receiverId
-      receiverId: '1',
+      // receiverId: '1',
+      receiverId: this.localStorage.getEncryptedData("receiverId"),
     };
 
     this.parcelService.createCommission(commission)

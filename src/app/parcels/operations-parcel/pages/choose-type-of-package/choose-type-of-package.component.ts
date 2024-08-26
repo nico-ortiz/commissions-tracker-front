@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ReceiverService } from '../../services/receiver.service';
 import { Receiver } from '../../interfaces/receiver.interface';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-choose-type-of-package',
@@ -9,15 +10,12 @@ import { Receiver } from '../../interfaces/receiver.interface';
 })
 export class ChooseTypeOfPackageComponent {
   constructor(
-    private receiverService: ReceiverService
+    private receiverService: ReceiverService,
+    private localStorage: LocalStorageService
   ) {
   }
 
-  public get receiver(): Receiver {
-    return this.receiverService.getReceiver;
-  }
-
   public getPath(): string {
-    return '/parcels/make-parcel/edit-receiver/' + this.receiver.receiverId;
+    return '/parcels/make-parcel/edit-receiver/' + this.localStorage.getEncryptedData("receiverId");
   }
 }

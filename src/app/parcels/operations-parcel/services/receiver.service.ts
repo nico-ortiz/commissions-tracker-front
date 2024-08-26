@@ -4,6 +4,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 
 import { environments } from '../../../../environments/environments';
 import { Receiver } from '../interfaces/receiver.interface';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,21 @@ import { Receiver } from '../interfaces/receiver.interface';
 export class ReceiverService {
 
   private baseUrl: string = environments.baseUrl;
-  private receiver?: Receiver;
+  private receiver!: Receiver;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private localStorage: LocalStorageService
   ) { }
 
   get currentReceiver(): Receiver | undefined {
     if (!this.receiver) return undefined;
 
     return structuredClone(this.receiver);
+  }
+
+  get getReceiver(): Receiver {
+    return this.receiver;
   }
 
   public getReceiverById(receiverId: string): Observable<Receiver> {
@@ -33,7 +39,10 @@ export class ReceiverService {
   public createReceiver(receiver: Receiver): Observable<Receiver> {
     return this.http.post<Receiver>(`${this.baseUrl}/receivers/create`, receiver)
       .pipe(
-        tap(receiver => this.receiver = receiver)
+        tap(receiver => {
+          this.receiver = receiver;
+          this.localStorage.saveEncryptedData("receiverId", JSON.stringify(receiver.receiverId));
+        })
       );
   }
 
