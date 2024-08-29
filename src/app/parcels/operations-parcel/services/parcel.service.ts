@@ -40,6 +40,7 @@ export class ParcelService {
   public addEnvelopeToCommission(description: string): Observable<Envelope> {
     const envelope: Package = {
       description,
+      price: 0,
       packageType: PackageType.SOBRE,
       commissionId: this.localStorage.getEncryptedData("commissionId")
     }
@@ -83,5 +84,9 @@ export class ParcelService {
     };
 
     return this.http.post<Bigger>(`${this.baseUrl}/biggers/create`, bigger);
+  }
+
+  public getPackagesOfCommission(commissionId: string): Observable<Package[]> {
+    return this.http.get<Package[]>(`${this.baseUrl}/commissions/${commissionId}/packages`);
   }
 }

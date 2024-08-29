@@ -15,6 +15,7 @@ import { NewCommission } from '../../interfaces/new-commission.interface';
 import { Customer } from '../../../../customers/interfaces/customer';
 import { CustomersService } from '../../../../customers/services/customers.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
+import { BackButtonService } from '../../../../shared/services/back-button.service';
 
 @Component({
   selector: 'operation-create-receiver-page',
@@ -26,7 +27,7 @@ export class CreateReceiverPageComponent implements OnInit {
     receiverId: [''],
     firstName: ['', [Validators.required, Validators.minLength(3)]],
     lastName: ['', [Validators.required, Validators.minLength(3)]],
-    address: ['', [Validators.required, Validators.email]],
+    address: ['', [Validators.required, Validators.minLength(5)]],
     phoneNumber: ['', [Validators.required, Validators.minLength(9), phoneNumberValidator(/[0-9]{3}-[0-9]{1}-[0-9]{6}/)]],
     date: ['', [Validators.required]],
     openingHour: [, [Validators.required]],
@@ -46,7 +47,8 @@ export class CreateReceiverPageComponent implements OnInit {
     private receiverService: ReceiverService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private backButtonEnable: BackButtonService
   ) {}
 
   ngOnInit(): void {
@@ -118,8 +120,8 @@ export class CreateReceiverPageComponent implements OnInit {
       // customerId: this.customerService.getCustomer.customerId,
       customerId: '1',
       // receiverId: this.receiver.receiverId
-      // receiverId: '1',
-      receiverId: this.localStorage.getEncryptedData("receiverId"),
+      receiverId: '1',
+      // receiverId: this.localStorage.getEncryptedData("receiverId"),
     };
 
     this.parcelService.createCommission(commission)
@@ -131,5 +133,12 @@ export class CreateReceiverPageComponent implements OnInit {
     this.snackBar.open(message, 'done', {
       duration: 3000,
     })
+  }
+
+  public addNewPackage(): void {
+    if (!this.backButtonEnable.getEnableButton) {
+      this.backButtonEnable.setEnableButtton = !this.backButtonEnable.getEnableButton;
+    }
+    this.router.navigate(['/parcels/make-parcel/create-packages/choose-type-of-package']);
   }
 }

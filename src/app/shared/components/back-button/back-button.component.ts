@@ -9,4 +9,7 @@ export class BackButtonComponent {
 
   @Input()
   public routerLink!: string;
+
+  @Input()
+  public text!: string;
 }

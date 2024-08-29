@@ -48,3 +48,16 @@ h1 {
   transition: all .1s ease-in;
   justify-self: end;
 }
+
+.form .btn:hover {
+  transform: scale(1.02);
+}
+
+.form .btn:disabled {
+  opacity: .4;
+  cursor: auto;
+}
+
+.form .btn:disabled:hover {
+  transform: none;
+}

@@ -1,1 +1,61 @@
-<p>list-of-packages works!</p>
+<div class="header">
+  <h1 class="open-sans-700 title">Listado de paquetes</h1>
+  <button
+    class="btn open-sans-600"
+    (click)="addNewPackage()">
+    <mat-icon>add</mat-icon>
+    Agregar nuevo paquete a la comisión
+  </button>
+</div>
+<hr>
+<div class="cards-container">
+  <div
+    class="alert"
+    *ngIf="this.packages.length === 0; else listOfPackages">
+    La encomienda correspondiente no contiene paquetes
+  </div>
+
+  <ng-template #listOfPackages>
+    <div class="cards">
+      <article class="package-card" *ngFor="let package of this.packages; let i = index">
+        <div class="title-container">
+          <img class="img-card"
+            [src]="imageByPackageType(package.packageType.toString()).src"
+            [alt]="imageByPackageType(package.packageType.toString()).alt">
+          <div class="text-container">
+            <h4 class="title-card">{{package.packageType}}</h4>
+            <p class="price-card">Precio: ARS $ {{package.price}}</p>
+          </div>
+        </div>
+        <p class="description-card">{{package.description}}</p>
+        <div class="actions-btns">
+          <button
+            type="button"
+            class="btns"
+            (click)="deletePackage(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button class="btns">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </article>
+    </div>
+    <div class="info">
+      <h3>Destinatario</h3>
+      <p><strong>Nombre:</strong> {{receiver.firstName}} {{receiver.lastName}}</p>
+      <p><strong>Direccion:</strong> {{receiver.address}}</p>
+      <p><strong>Teléfono:</strong> {{receiver.phoneNumber}}</p>
+    </div>
+  </ng-template>
+  <div class="btns-container">
+    <button class="btn open-sans-600">
+      <mat-icon>edit</mat-icon>
+      Modificar datos de destinatario
+    </button>
+    <button class="btn open-sans-600">
+      <mat-icon>arrow_forward</mat-icon>
+      Finalizar
+    </button>
+  </div>
+</div>

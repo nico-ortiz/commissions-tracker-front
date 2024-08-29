@@ -1,4 +1,12 @@
-<shared-back-button [routerLink]="getPath()"></shared-back-button>
+<shared-back-button
+  [routerLink]="getPathToEditReceiver()"
+  *ngIf="activeButton"
+  text="Volver atras"></shared-back-button>
+<shared-back-button
+  [routerLink]="getPathToReturnToListOfPackages()"
+  *ngIf="!activeButton"
+  text="Cancelar"
+></shared-back-button>
 <h1
   class="open-sans-700"
   >Que tipo de encomienda va a enviar?</h1>

@@ -14,7 +14,7 @@ import { catchError } from 'rxjs';
 })
 export class CreateEnvelopeParcelPageComponent {
   public envelopeForm: FormGroup = this.fb.group({
-    description: [''],
+    description: ['', [Validators.required, Validators.minLength(5)]],
   });
 
   private envelope!: Envelope
@@ -45,7 +45,11 @@ export class CreateEnvelopeParcelPageComponent {
       );
   }
 
-  showSnackbar(message: string): void {
+  get isValidForm(): boolean {
+    return this.envelopeForm.valid;
+  }
+
+  public showSnackbar(message: string): void {
     this.snackBar.open(message, 'done', {
       duration: 3000,
     })

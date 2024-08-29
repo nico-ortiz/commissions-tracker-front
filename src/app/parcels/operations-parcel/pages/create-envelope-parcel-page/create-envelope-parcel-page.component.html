@@ -1,4 +1,7 @@
-<shared-back-button routerLink="/parcels/make-parcel/create-packages/choose-type-of-package"></shared-back-button>
+<shared-back-button
+  routerLink="/parcels/make-parcel/create-packages/choose-type-of-package"
+  text="Volver atras">
+</shared-back-button>
 <h1 class="open-sans-700">Ingrese una breve descripción por favor</h1>
 <form class="form" (submit)="onSubmit()" [formGroup]="envelopeForm">
   <label for="text-area" class="open-sans-700">Descripción acerca del sobre:</label>
@@ -9,10 +12,14 @@
     rows="10"
     cols="80"
     placeholder="Es posible que le entreguen otro sobre para traer desde alla..."></textarea>
-    <button
-      class="btn open-sans-600"
-      type="submit"
-      >
-      Continuar
-    </button>
+  <shared-error-field
+    field="description"
+    [form]="envelopeForm"
+  ></shared-error-field>
+  <button
+    class="btn open-sans-600"
+    type="submit"
+    [disabled]="!isValidForm">
+    Continuar
+  </button>
 </form>

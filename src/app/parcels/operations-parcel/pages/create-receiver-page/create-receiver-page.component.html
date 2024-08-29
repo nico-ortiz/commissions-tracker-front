@@ -1,6 +1,8 @@
-<shared-back-button routerLink="/home"></shared-back-button>
+<shared-back-button
+  routerLink="/home"
+  text="Volver atras"></shared-back-button>
 <h1 class="title open-sans-700">
-  {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede actualizar los datos del destinatario"}}
+  {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede modificar los datos del destinatario"}}
 </h1>
 <hr>
 <form
@@ -91,7 +93,7 @@
       type="button"
       [disabled]="!getCurrentReceiver.receiverId"
       class="btn open-sans-600"
-      routerLink="/parcels/make-parcel/create-packages/choose-type-of-package">
+      (click)="addNewPackage()">
       Continuar
       <mat-icon>arrow_forward</mat-icon>
     </button>
