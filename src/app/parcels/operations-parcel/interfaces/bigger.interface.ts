@@ -1,7 +1,6 @@
-import { Package } from "./package.interface";
+import { IPackage } from "./package.interface";
 
-export interface Bigger extends Package {
-  biggerId:     string;
+export interface IBigger extends IPackage {
   width:        number;
   height:       number;
   weight:       number;

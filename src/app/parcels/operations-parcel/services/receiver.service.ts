@@ -54,4 +54,15 @@ export class ReceiverService {
         catchError(err => of(false))
       );
   }
+
+  public deleteReceiver(receiverId: string): Observable<boolean> {
+    return this.http.delete<Receiver>(`${this.baseUrl}/receivers/del/${receiverId}`)
+      .pipe(
+        map(res => {
+          this.localStorage.removeData("receiverId");
+          return true;
+        }),
+        catchError(err => of(false))
+      );
+  }
 }

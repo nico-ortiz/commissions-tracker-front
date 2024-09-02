@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 import { environments } from '../../../../environments/environments';
 import { NewCommission } from '../interfaces/new-commission.interface';
 import { Commission } from '../interfaces/commission.interface';
-import { Envelope } from '../interfaces/envelope.interface';
-import { Package } from '../interfaces/package.interface';
-import { Parcel } from '../interfaces/parcel.interface';
-import { Bigger } from '../interfaces/bigger.interface';
 import { PackageType } from '../interfaces/enums/package-type.enum';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { IPackage } from '../interfaces/package.interface';
+import { IEnvelope } from '../interfaces/envelope.interface';
+import { IParcel } from '../interfaces/parcel.interface';
+import { IBigger } from '../interfaces/bigger.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,6 @@ export class ParcelService {
 
   private baseUrl: string = environments.baseUrl;
   private parcel!: Commission;
-  private packagesOfCommission: Package[] = [];
 
   constructor(
     private http: HttpClient,
@@ -32,28 +31,34 @@ export class ParcelService {
         tap(parcel => {
           this.parcel = parcel;
           this.localStorage.saveEncryptedData("commissionId", JSON.stringify(parcel.commissionId));
-          console.log(parcel)
         }),
       );
   }
 
-  public addEnvelopeToCommission(description: string): Observable<Envelope> {
-    const envelope: Package = {
+  public deleteCommission(commissionId: string): Observable<boolean> {
+    return this.http.delete<Commission>(`${this.baseUrl}/commissions/del/${commissionId}`)
+    .pipe(
+      map(() => {
+        this.localStorage.removeData("commissionId");
+        return true;
+      }),
+      catchError(err => of(false))
+    );
+  }
+
+  public addEnvelopeToCommission(description: string): Observable<IEnvelope> {
+    const envelope: IPackage = {
+      packageId: '',
       description,
       price: 0,
       packageType: PackageType.SOBRE,
       commissionId: this.localStorage.getEncryptedData("commissionId")
     }
 
-    console.log(envelope);
-    return this.http.post<Envelope>(`${this.baseUrl}/envelopes/create`, envelope)
-      .pipe(
-        tap(env => this.packagesOfCommission.push(env))
-      );
+    return this.http.post<IEnvelope>(`${this.baseUrl}/envelopes/create`, envelope);
   }
 
-  public addParcelToCommission(description: string, weight: number): Observable<Parcel> {
-
+  public addParcelToCommission(description: string, weight: number): Observable<IParcel> {
     let packageType: PackageType;
     if (weight <= 10) {
       packageType = PackageType.CAJA_CHICA;
@@ -70,10 +75,10 @@ export class ParcelService {
       weight,
     };
 
-    return this.http.post<Parcel>(`${this.baseUrl}/parcels/create`, parcel);
+    return this.http.post<IParcel>(`${this.baseUrl}/parcels/create`, parcel);
   }
 
-  public addBiggerToCommission(description: string, width: number, height: number, weight: number): Observable<Bigger> {
+  public addBiggerToCommission(description: string, width: number, height: number, weight: number): Observable<IBigger> {
     const bigger = {
       description,
       packageType: PackageType.BIGGER,
@@ -83,10 +88,18 @@ export class ParcelService {
       weight
     };
 
-    return this.http.post<Bigger>(`${this.baseUrl}/biggers/create`, bigger);
+    return this.http.post<IBigger>(`${this.baseUrl}/biggers/create`, bigger);
   }
 
-  public getPackagesOfCommission(commissionId: string): Observable<Package[]> {
-    return this.http.get<Package[]>(`${this.baseUrl}/commissions/${commissionId}/packages`);
+  public getPackagesOfCommission(commissionId: string): Observable<IPackage[]> {
+    return this.http.get<IPackage[]>(`${this.baseUrl}/commissions/${commissionId}/packages`);
+  }
+
+  public deletePackageOfCommission(packageId: string): Observable<boolean> {
+    return this.http.delete<IPackage>(`${this.baseUrl}/packages/del/${packageId}`)
+      .pipe(
+        map(result => true),
+        catchError(err => of(false))
+      );
   }
 }

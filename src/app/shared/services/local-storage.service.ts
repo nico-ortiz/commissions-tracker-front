@@ -33,6 +33,11 @@ export class LocalStorageService {
     return this.decrypt(data);
   }
 
+  public removeEncryptedData(key: string): void {
+    let data = localStorage.getItem(key) || "";
+    localStorage.removeItem(this.decrypt(data));
+  }
+
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ParcelService } from '../../services/parcel.service';
+import { ParcelService } from '../../services/package.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Envelope } from '../../interfaces/envelope.interface';
+import { IEnvelope } from '../../interfaces/envelope.interface';
 import { catchError } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class CreateEnvelopeParcelPageComponent {
     description: ['', [Validators.required, Validators.minLength(5)]],
   });
 
-  private envelope!: Envelope
+  private envelope!: IEnvelope
 
   constructor(
     private fb: FormBuilder,
@@ -28,8 +28,8 @@ export class CreateEnvelopeParcelPageComponent {
 
   }
 
-  get currentEnvelope(): Envelope {
-    this.envelope = this.envelopeForm.value as Envelope;
+  get currentEnvelope(): IEnvelope {
+    this.envelope = this.envelopeForm.value as IEnvelope;
     return this.envelope;
   }
 

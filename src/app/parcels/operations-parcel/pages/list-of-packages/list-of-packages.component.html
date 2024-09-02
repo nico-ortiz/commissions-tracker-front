@@ -23,7 +23,7 @@
             [src]="imageByPackageType(package.packageType.toString()).src"
             [alt]="imageByPackageType(package.packageType.toString()).alt">
           <div class="text-container">
-            <h4 class="title-card">{{package.packageType}}</h4>
+            <h4 class="title-card">{{package.packageType.toString()}}</h4>
             <p class="price-card">Precio: ARS $ {{package.price}}</p>
           </div>
         </div>

@@ -1,5 +1,4 @@
-import { Package } from "./package.interface";
+import { IPackage } from "./package.interface";
 
-export interface Envelope extends Package {
-  envelopeId:   string;
+export interface IEnvelope extends IPackage {
 }

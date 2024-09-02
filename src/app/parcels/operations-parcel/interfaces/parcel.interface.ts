@@ -1,6 +1,5 @@
-import { Package } from "./package.interface";
+import { IPackage } from "./package.interface";
 
-export interface Parcel extends Package {
-  parcelId:     string;
+export interface IParcel extends IPackage {
   weight:       number;
 }

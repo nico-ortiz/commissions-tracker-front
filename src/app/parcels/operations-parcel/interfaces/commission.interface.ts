@@ -1,5 +1,5 @@
 import { Status } from "./enums/status.enum";
-import { Package } from "./package.interface";
+import { IPackage } from "./package.interface";
 
 export interface Commission {
   commissionId: string;
@@ -9,5 +9,5 @@ export interface Commission {
   price:        number;
   customerId:   string;
   receiverId:   string;
-  packages:     Package[];
+  packages:     IPackage[];
 }

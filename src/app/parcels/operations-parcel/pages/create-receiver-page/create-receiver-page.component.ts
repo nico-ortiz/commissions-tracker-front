@@ -9,11 +9,8 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
 import { phoneNumberValidator } from '../../../../customers/phone-number.directive';
 import { Receiver } from '../../interfaces/receiver.interface';
 import { ReceiverService } from '../../services/receiver.service';
-import { ParcelService } from '../../services/parcel.service';
-import { Commission } from '../../interfaces/commission.interface';
+import { ParcelService } from '../../services/package.service';
 import { NewCommission } from '../../interfaces/new-commission.interface';
-import { Customer } from '../../../../customers/interfaces/customer';
-import { CustomersService } from '../../../../customers/services/customers.service';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 import { BackButtonService } from '../../../../shared/services/back-button.service';
 

@@ -1,6 +1,7 @@
 import { PackageType } from "./enums/package-type.enum";
 
-export interface Package {
+export interface IPackage {
+  packageId:    string;
   description:  string;
   price:        number;
   packageType:  PackageType;

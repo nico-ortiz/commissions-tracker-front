@@ -1,9 +1,6 @@
 <h2 mat-dialog-title>Esta seguro?</h2>
-<mat-dialog-content *ngIf="data">
-  <p>Este proceso no es reversible, esta a punto de eliminar a {{data.email}}</p>
-</mat-dialog-content>
-<mat-dialog-content *ngIf="!data">
-  <p>Esta a punto de actualizar los datos del destinatario</p>
+<mat-dialog-content>
+  <p>{{data}}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No, gracias</button>
