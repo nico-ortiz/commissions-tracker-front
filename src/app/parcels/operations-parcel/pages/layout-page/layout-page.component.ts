@@ -3,7 +3,7 @@ import { ReceiverService } from '../../services/receiver.service';
 import { Receiver } from '../../interfaces/receiver.interface';
 
 @Component({
-  selector: 'app-layout-page',
+  selector: 'operation-layout-page',
   templateUrl: './layout-page.component.html',
   styleUrl: './layout-page.component.css'
 })

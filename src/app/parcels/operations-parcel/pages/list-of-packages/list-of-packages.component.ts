@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ParcelService } from '../../services/package.service';
-import { LocalStorageService } from '../../../../shared/services/local-storage.service';
-import { ReceiverService } from '../../services/receiver.service';
-import { Receiver } from '../../interfaces/receiver.interface';
-import { Router } from '@angular/router';
-import { BackButtonService } from '../../../../shared/services/back-button.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
-import { filter, switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IPackage } from '../../interfaces/package.interface';
-import { IEnvelope } from '../../interfaces/envelope.interface';
+import { Router } from '@angular/router';
+import { filter, switchMap } from 'rxjs';
+
+import { BackButtonService } from '../../../../shared/services/back-button.service';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { IBigger } from '../../interfaces/bigger.interface';
+import { IEnvelope } from '../../interfaces/envelope.interface';
+import { IPackage } from '../../interfaces/package.interface';
 import { IParcel } from '../../interfaces/parcel.interface';
+import { LocalStorageService } from '../../../../shared/services/local-storage.service';
+import { PackageType } from '../../interfaces/enums/package-type.enum';
+import { PackageService } from '../../services/package.service';
+import { Receiver } from '../../interfaces/receiver.interface';
+import { ReceiverService } from '../../services/receiver.service';
 
 @Component({
-  selector: 'app-list-of-packages',
+  selector: 'operation-list-of-packages',
   templateUrl: './list-of-packages.component.html',
   styleUrl: './list-of-packages.component.css'
 })
@@ -42,7 +44,7 @@ export class ListOfPackagesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private parcelService: ParcelService,
+    private packageService: PackageService,
     private receiverSerivce: ReceiverService,
     private localStorage: LocalStorageService,
     private backButtonEnable: BackButtonService,
@@ -67,13 +69,13 @@ export class ListOfPackagesComponent implements OnInit {
   }
 
   public fetchPackages(): void {
-    this.parcelService.getPackagesOfCommission(this.localStorage.getEncryptedData("commissionId"))
+    this.packageService.getPackagesOfCommission(this.localStorage.getEncryptedData("commissionId"))
       .subscribe(packages => {
         packages.map((pkg) => {
           switch(pkg.packageType) {
-            case 0:
+            case "SOBRE":
               return pkg as IEnvelope;
-            case 4:
+            case "BIGGER":
               return pkg as IBigger;
             default:
               return pkg as IParcel;
@@ -85,7 +87,7 @@ export class ListOfPackagesComponent implements OnInit {
 
   public addNewPackage(): void {
     if (this.backButtonEnable.getEnableButton) {
-      this.backButtonEnable.setEnableButtton = !this.backButtonEnable.getEnableButton;
+      this.backButtonEnable.modifyEnableButton();
     }
     this.router.navigate(['/parcels/make-parcel/create-packages/choose-type-of-package']);
   }
@@ -96,7 +98,7 @@ export class ListOfPackagesComponent implements OnInit {
       const dialogWarning = this.dialog.open(
         ConfirmDialogComponent,
         {
-          data: `Si elimina este elemento, se eliminara la comision`
+          data: `Si elimina este paquete, se eliminara la comision`
         }
       );
 
@@ -104,31 +106,32 @@ export class ListOfPackagesComponent implements OnInit {
         .pipe(
           filter(result => result),
           switchMap(() => {
-            return this.parcelService.deleteCommission(this.localStorage.getEncryptedData("commissionId"));
+            return this.packageService.deleteCommission(this.localStorage.getEncryptedData("commissionId"));
           }),
           filter(wasDeleted => wasDeleted)
-        ).subscribe(() => {
-          this.showSnackbar(`Comision elminada`);
-        });
-
-      setTimeout(() => {
-        this.receiverSerivce.deleteReceiver(this.localStorage.getEncryptedData("receiverId"))
+        )
+        .pipe(
+          switchMap(() => {
+            return this.receiverSerivce.deleteReceiver(this.localStorage.getEncryptedData("receiverId"));
+          }),
+        )
         .subscribe(() => {
-          this.router.navigate(['./']);
+          setTimeout(() => {
+            this.showSnackbar(`Comision eliminada`);
+            this.router.navigate(['./']);
+          }, 2000);
         });
-      }, 3000);
-
     } else {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
         data: `${"Esta a punto de borrar"} ${pkg.packageType}.
-        Descripcion: ${pkg.description} ${pkg.packageId}`
+        Descripcion: ${pkg.description}`
       })
 
       dialogRef.afterClosed()
         .pipe(
           filter(result => result),
           switchMap(() => {
-            return this.parcelService.deletePackageOfCommission(pkg.packageId);
+            return this.packageService.deletePackageOfCommission(pkg.packageId);
           }),
           filter(wasDeleted => wasDeleted)
         )
@@ -139,9 +142,41 @@ export class ListOfPackagesComponent implements OnInit {
     }
   }
 
-  showSnackbar(message: string): void {
+  public updatePackage(index: number): void {
+    const pkg = this.packages[index];
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: `Esta seguro de actualizar la informacion de este sobre?`
+    });
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter(result => result),
+      )
+      .subscribe(result => {
+        this.modifyButtonActivity();
+        if (pkg.packageType === "SOBRE") {
+          console.log(pkg);
+          this.router.navigate(['/parcels/make-parcel/create-packages/edit-envelope/', pkg.packageId]);
+        }
+      });
+
+
+  }
+
+  public showSnackbar(message: string): void {
     this.snackBar.open(message, 'done', {
       duration: 3000,
     })
+  }
+
+  public getPathToUpdateReceiver(): string {
+    return '/parcels/make-parcel/edit-receiver/' + this.localStorage.getEncryptedData("receiverId");
+  }
+
+  public modifyButtonActivity(): void {
+    if (this.backButtonEnable) {
+      this.backButtonEnable.setEnableButtton = false;
+    }
   }
 }

@@ -3,7 +3,7 @@ import { LocalStorageService } from '../../../../shared/services/local-storage.s
 import { BackButtonService } from '../../../../shared/services/back-button.service';
 
 @Component({
-  selector: 'app-choose-type-of-package',
+  selector: 'operation-choose-type-of-package',
   templateUrl: './choose-type-of-package.component.html',
   styleUrl: './choose-type-of-package.component.css'
 })

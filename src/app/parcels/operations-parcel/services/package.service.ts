@@ -15,7 +15,7 @@ import { IBigger } from '../interfaces/bigger.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ParcelService {
+export class PackageService {
 
   private baseUrl: string = environments.baseUrl;
   private parcel!: Commission;
@@ -97,6 +97,21 @@ export class ParcelService {
 
   public deletePackageOfCommission(packageId: string): Observable<boolean> {
     return this.http.delete<IPackage>(`${this.baseUrl}/packages/del/${packageId}`)
+      .pipe(
+        map(result => true),
+        catchError(err => of(false))
+      );
+  }
+
+  public getPackageById(packageId: string): Observable<IPackage> {
+    return this.http.get<IPackage>(`${this.baseUrl}/packages/${packageId}`);
+  }
+
+  public updateEnvelope(envelopeId: string, description: string): Observable<boolean> {
+    return this.http.put<IEnvelope>(`${this.baseUrl}/envelopes/update/${envelopeId}`,
+      {},
+      {params: {description: description}}
+    )
       .pipe(
         map(result => true),
         catchError(err => of(false))

@@ -9,7 +9,7 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
 import { phoneNumberValidator } from '../../../../customers/phone-number.directive';
 import { Receiver } from '../../interfaces/receiver.interface';
 import { ReceiverService } from '../../services/receiver.service';
-import { ParcelService } from '../../services/package.service';
+import { PackageService } from '../../services/package.service';
 import { NewCommission } from '../../interfaces/new-commission.interface';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
 import { BackButtonService } from '../../../../shared/services/back-button.service';
@@ -34,13 +34,13 @@ export class CreateReceiverPageComponent implements OnInit {
   public today!: string;
   private receiver!: Receiver;
   private commission!: NewCommission;
-  public clicked: boolean = false;
+  public  activeButton!: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private parcelService: ParcelService,
+    private parcelService: PackageService,
     private receiverService: ReceiverService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -54,6 +54,8 @@ export class CreateReceiverPageComponent implements OnInit {
     const mm   = todayDate.getMonth();
     const dd   = todayDate.getDay();
     this.today = `${yyyy}-${mm}-${dd}`;
+
+    this.activeButton = this.backButtonEnable.getEnableButton;
 
     if (!this.router.url.includes('edit')) return;
 
@@ -85,7 +87,7 @@ export class CreateReceiverPageComponent implements OnInit {
 
     if (this.getCurrentReceiver.receiverId) {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-        data: null
+        data: `Desea actualizar el destinatario?`
       });
 
       dialogRef.afterClosed()
@@ -107,7 +109,7 @@ export class CreateReceiverPageComponent implements OnInit {
         this.showSnackbar(`Destinatario añadido correctamente!`);
         setTimeout(() => {
           this.router.navigate(['/parcels/make-parcel/edit-receiver', this.localStorage.getEncryptedData("receiverId")]);
-        }, 3000)
+        }, 2000)
       })
   }
 
@@ -135,7 +137,35 @@ export class CreateReceiverPageComponent implements OnInit {
   public addNewPackage(): void {
     if (!this.backButtonEnable.getEnableButton) {
       this.backButtonEnable.setEnableButtton = !this.backButtonEnable.getEnableButton;
+      this.router.navigate(['/parcels/make-parcel/create-packages/list-of-packages']);
+    } else {
+      this.router.navigate(['/parcels/make-parcel/create-packages/choose-type-of-package']);
     }
-    this.router.navigate(['/parcels/make-parcel/create-packages/choose-type-of-package']);
+  }
+
+  public alert(): void {
+    if (this.getCurrentReceiver.receiverId) {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: `Si vuelve atras se eliminara el destinatario ingresado.`
+      });
+
+      dialogRef.afterClosed()
+        .pipe(
+          filter(result => result),
+          switchMap(() => this.receiverService.deleteReceiver(this.getCurrentReceiver.receiverId)),
+          filter(wasUpdated => wasUpdated)
+        )
+        .subscribe(() => {
+          this.showSnackbar(`Destinatario eliminado!`);
+          this.router.navigate(['/home']);
+        })
+        return;
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+
+  public modifyEnableButton(): void {
+    this.backButtonEnable.modifyEnableButton();
   }
 }

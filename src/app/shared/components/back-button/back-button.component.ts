@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class BackButtonComponent {
 
   @Input()
-  public routerLink!: string;
+  public link!: string;
 
   @Input()
   public text!: string;

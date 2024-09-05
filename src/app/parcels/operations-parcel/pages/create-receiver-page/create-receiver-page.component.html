@@ -1,6 +1,12 @@
 <shared-back-button
-  routerLink="/home"
-  text="Volver atras"></shared-back-button>
+  *ngIf="activeButton"
+  text="Volver atras"
+  (click)="alert()"></shared-back-button>
+<shared-back-button
+  *ngIf="!activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+  (click)="modifyEnableButton()"></shared-back-button>
 <h1 class="title open-sans-700">
   {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede modificar los datos del destinatario"}}
 </h1>
@@ -90,8 +96,9 @@
       <mat-icon>save</mat-icon>
     </button>
     <button
+      *ngIf="this.activeButton"
       type="button"
-      [disabled]="!getCurrentReceiver.receiverId"
+      [disabled]="!getCurrentReceiver.receiverId || !isValidForm"
       class="btn open-sans-600"
       (click)="addNewPackage()">
       Continuar

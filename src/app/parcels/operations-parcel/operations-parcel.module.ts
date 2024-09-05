@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { ChooseTypeOfPackageComponent } from './pages/choose-type-of-package/choose-type-of-package.component';
 import { CreateApplianceParcelPageComponent } from './pages/create-appliance-parcel-page/create-appliance-parcel-page.component';
-import { CreateEnvelopeParcelPageComponent } from './pages/create-envelope-parcel-page/create-envelope-parcel-page.component';
+import { CreateEnvelopePageComponent } from './pages/create-envelope-parcel-page/create-envelope-parcel-page.component';
 import { CreatePackagePageComponent } from './pages/create-package-page/create-package-page.component';
 import { CreateReceiverPageComponent } from './pages/create-receiver-page/create-receiver-page.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
@@ -20,7 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
   declarations: [
     ChooseTypeOfPackageComponent,
     CreateApplianceParcelPageComponent,
-    CreateEnvelopeParcelPageComponent,
+    CreateEnvelopePageComponent,
     CreatePackagePageComponent,
     CreateReceiverPageComponent,
     LayoutPageComponent,

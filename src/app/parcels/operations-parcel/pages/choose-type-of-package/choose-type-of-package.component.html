@@ -1,9 +1,9 @@
 <shared-back-button
-  [routerLink]="getPathToEditReceiver()"
+  [link]="getPathToEditReceiver()"
   *ngIf="activeButton"
   text="Volver atras"></shared-back-button>
 <shared-back-button
-  [routerLink]="getPathToReturnToListOfPackages()"
+  [link]="getPathToReturnToListOfPackages()"
   *ngIf="!activeButton"
   text="Cancelar"
 ></shared-back-button>

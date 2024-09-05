@@ -1,8 +1,17 @@
 <shared-back-button
-  routerLink="/parcels/make-parcel/create-packages/choose-type-of-package"
+  *ngIf="activeButton"
+  link="/parcels/make-parcel/create-packages/choose-type-of-package"
   text="Volver atras">
 </shared-back-button>
-<h1 class="open-sans-700">Ingrese una breve descripción por favor</h1>
+<shared-back-button
+  *ngIf="!activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+  (click)="modifyActiveButton()">
+</shared-back-button>
+<h1 class="open-sans-700">
+  {{!this.activeButton ? "Ingrese una breve descripción por favor" : "Modifique la descripción"}}
+</h1>
 <form class="form" (submit)="onSubmit()" [formGroup]="envelopeForm">
   <label for="text-area" class="open-sans-700">Descripción acerca del sobre:</label>
   <textarea
@@ -17,6 +26,16 @@
     [form]="envelopeForm"
   ></shared-error-field>
   <button
+    *ngIf="!this.activeButton"
+    type="button"
+    (click)="onSubmit()"
+    class="btn open-sans-600"
+    [disabled]="!isValidForm || isPristineForm"
+    >
+    Modificar
+  </button>
+  <button
+    *ngIf="this.activeButton"
     class="btn open-sans-600"
     type="submit"
     [disabled]="!isValidForm">
