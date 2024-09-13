@@ -58,21 +58,13 @@ export class PackageService {
     return this.http.post<IEnvelope>(`${this.baseUrl}/envelopes/create`, envelope);
   }
 
-  public addParcelToCommission(description: string, weight: number): Observable<IParcel> {
-    let packageType: PackageType;
-    if (weight <= 10) {
-      packageType = PackageType.CAJA_CHICA;
-    } else if (weight > 10 && weight <= 20) {
-      packageType = PackageType.CAJA_MEDIANA;
-    } else {
-      packageType = PackageType.CAJA_GRANDE;
-    }
-
-    const parcel = {
+  public addParcelToCommission(description: string, packageType: PackageType): Observable<IParcel> {
+    const parcel: IPackage = {
+      packageId: '',
       description,
-      packageType: packageType,
-      commissionId: this.parcel.commissionId,
-      weight,
+      price: 0,
+      packageType,
+      commissionId: this.localStorage.getEncryptedData("commissionId")
     };
 
     return this.http.post<IParcel>(`${this.baseUrl}/parcels/create`, parcel);
@@ -82,7 +74,7 @@ export class PackageService {
     const bigger = {
       description,
       packageType: PackageType.BIGGER,
-      commissionId: this.parcel.commissionId,
+      commissionId: this.localStorage.getEncryptedData("commissionId"),
       width,
       height,
       weight
@@ -111,6 +103,28 @@ export class PackageService {
     return this.http.put<IEnvelope>(`${this.baseUrl}/envelopes/update/${envelopeId}`,
       {},
       {params: {description: description}}
+    )
+      .pipe(
+        map(result => true),
+        catchError(err => of(false))
+      );
+  }
+
+  public updateParcel(parcelId: string, description: string, packageType: PackageType ): Observable<boolean> {
+    return this.http.put<IParcel>(`${this.baseUrl}/parcels/update/${parcelId}`,
+      {},
+      {params: {description, packageType}}
+    )
+      .pipe(
+        map(result => true),
+        catchError(err => of(false))
+      );
+  }
+
+  public updateBigger(biggerId: string, description: string, width: number, height: number, weight: number): Observable<boolean> {
+    return this.http.put<IBigger>(`${this.baseUrl}/biggers/update/${biggerId}`, 
+      {},
+      {params: {description, width, height, weight}}
     )
       .pipe(
         map(result => true),

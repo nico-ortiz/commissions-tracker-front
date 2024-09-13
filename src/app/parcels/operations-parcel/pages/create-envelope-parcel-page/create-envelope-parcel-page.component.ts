@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { switchMap } from 'rxjs';
 
 import { BackButtonService } from '../../../../shared/services/back-button.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEnvelope } from '../../interfaces/envelope.interface';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PackageService } from '../../services/package.service';
-import { filter, switchMap, tap } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+
 
 @Component({
   selector: 'operation-create-envelope-parcel-page',
@@ -26,6 +26,7 @@ export class CreateEnvelopePageComponent implements OnInit {
 
   private envelope!: IEnvelope;
   public activeButton!: boolean;
+  public updatedTitle!: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +42,7 @@ export class CreateEnvelopePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeButton = this.backButton.getEnableButton;
+    this.updatedTitle = this.backButton.getActiveTitle;
 
     if (!this.router.url.includes('edit')) return;
 

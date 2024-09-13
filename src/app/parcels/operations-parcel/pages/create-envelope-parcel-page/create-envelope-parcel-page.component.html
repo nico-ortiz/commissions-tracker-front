@@ -1,5 +1,5 @@
 <shared-back-button
-  *ngIf="activeButton"
+  *ngIf="activeButton "
   link="/parcels/make-parcel/create-packages/choose-type-of-package"
   text="Volver atras">
 </shared-back-button>
@@ -10,7 +10,7 @@
   (click)="modifyActiveButton()">
 </shared-back-button>
 <h1 class="open-sans-700">
-  {{!this.activeButton ? "Ingrese una breve descripción por favor" : "Modifique la descripción"}}
+  {{this.updatedTitle ? "Modifique la descripción" : "Ingrese una breve descripción por favor"}}
 </h1>
 <form class="form" (submit)="onSubmit()" [formGroup]="envelopeForm">
   <label for="text-area" class="open-sans-700">Descripción acerca del sobre:</label>
@@ -26,7 +26,7 @@
     [form]="envelopeForm"
   ></shared-error-field>
   <button
-    *ngIf="!this.activeButton"
+    *ngIf="this.updatedTitle"
     type="button"
     (click)="onSubmit()"
     class="btn open-sans-600"
@@ -35,7 +35,7 @@
     Modificar
   </button>
   <button
-    *ngIf="this.activeButton"
+    *ngIf="!this.updatedTitle"
     class="btn open-sans-600"
     type="submit"
     [disabled]="!isValidForm">

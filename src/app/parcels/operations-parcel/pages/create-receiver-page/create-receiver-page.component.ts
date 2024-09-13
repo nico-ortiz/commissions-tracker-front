@@ -35,6 +35,7 @@ export class CreateReceiverPageComponent implements OnInit {
   private receiver!: Receiver;
   private commission!: NewCommission;
   public  activeButton!: boolean;
+  public titleActive!: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +57,7 @@ export class CreateReceiverPageComponent implements OnInit {
     this.today = `${yyyy}-${mm}-${dd}`;
 
     this.activeButton = this.backButtonEnable.getEnableButton;
+    this.titleActive = this.backButtonEnable.getActiveTitle;
 
     if (!this.router.url.includes('edit')) return;
 

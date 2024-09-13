@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { CreateReceiverPageComponent } from './pages/create-receiver-page/create-receiver-page.component';
-import { CreatePackagePageComponent } from './pages/create-package-page/create-package-page.component';
+import { CreateParcelPageComponent } from './pages/create-package-page/create-parcel-page.component';
 import { CreateEnvelopePageComponent } from './pages/create-envelope-parcel-page/create-envelope-parcel-page.component';
 import { CreateApplianceParcelPageComponent } from './pages/create-appliance-parcel-page/create-appliance-parcel-page.component';
 import { ChooseTypeOfPackageComponent } from './pages/choose-type-of-package/choose-type-of-package.component';
@@ -26,8 +26,12 @@ const routes: Routes = [
     component: LayoutPageComponent,
     children: [
       {
-        path: 'add-package',
-        component: CreatePackagePageComponent
+        path: 'add-parcel',
+        component: CreateParcelPageComponent
+      },
+      {
+        path: 'edit-parcel/:id',
+        component: CreateParcelPageComponent
       },
       {
         path: 'add-envelope',
@@ -39,6 +43,10 @@ const routes: Routes = [
       },
       {
         path: 'add-appliance',
+        component: CreateApplianceParcelPageComponent,
+      },
+      {
+        path: 'edit-appliance/:id',
         component: CreateApplianceParcelPageComponent,
       },
       {

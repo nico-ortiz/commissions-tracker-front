@@ -11,7 +11,6 @@ import { IEnvelope } from '../../interfaces/envelope.interface';
 import { IPackage } from '../../interfaces/package.interface';
 import { IParcel } from '../../interfaces/parcel.interface';
 import { LocalStorageService } from '../../../../shared/services/local-storage.service';
-import { PackageType } from '../../interfaces/enums/package-type.enum';
 import { PackageService } from '../../services/package.service';
 import { Receiver } from '../../interfaces/receiver.interface';
 import { ReceiverService } from '../../services/receiver.service';
@@ -23,7 +22,7 @@ import { ReceiverService } from '../../services/receiver.service';
 })
 export class ListOfPackagesComponent implements OnInit {
 
-  public packages: IPackage[] = [];
+  public packages: any[] = [];
 
     public images = [
       {
@@ -53,6 +52,14 @@ export class ListOfPackagesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!this.backButtonEnable.getEnableButton) {
+      this.backButtonEnable.modifyEnableButton();
+    }
+
+    if (!this.backButtonEnable.getActiveTitle) {
+      this.backButtonEnable.modifyTitleActive();
+    }
+
     this.fetchPackages();
     this.receiverSerivce.getReceiverById(this.localStorage.getEncryptedData("receiverId"))
       .subscribe(receiver => this.receiver = receiver);
@@ -89,6 +96,11 @@ export class ListOfPackagesComponent implements OnInit {
     if (this.backButtonEnable.getEnableButton) {
       this.backButtonEnable.modifyEnableButton();
     }
+
+    if (this.backButtonEnable.getActiveTitle) {
+      this.backButtonEnable.modifyTitleActive();
+    }
+    
     this.router.navigate(['/parcels/make-parcel/create-packages/choose-type-of-package']);
   }
 
@@ -146,7 +158,7 @@ export class ListOfPackagesComponent implements OnInit {
     const pkg = this.packages[index];
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: `Esta seguro de actualizar la informacion de este sobre?`
+      data: `Esta seguro de actualizar la informacion de este paquete?`
     });
 
     dialogRef.afterClosed()
@@ -156,12 +168,13 @@ export class ListOfPackagesComponent implements OnInit {
       .subscribe(result => {
         this.modifyButtonActivity();
         if (pkg.packageType === "SOBRE") {
-          console.log(pkg);
           this.router.navigate(['/parcels/make-parcel/create-packages/edit-envelope/', pkg.packageId]);
+        } else if (pkg.packageType === "BIGGER") {
+          this.router.navigate(['/parcels/make-parcel/create-packages/edit-appliance/', pkg.packageId]);
+        } else {
+          this.router.navigate(['/parcels/make-parcel/create-packages/edit-parcel/', pkg.packageId]);
         }
       });
-
-
   }
 
   public showSnackbar(message: string): void {
@@ -175,8 +188,18 @@ export class ListOfPackagesComponent implements OnInit {
   }
 
   public modifyButtonActivity(): void {
-    if (this.backButtonEnable) {
+    if (this.backButtonEnable.getEnableButton) {
       this.backButtonEnable.setEnableButtton = false;
     }
+  }
+
+  public totalPrice(): number {
+    let acum: number = 0;
+    
+    for (let i: number = 0; i < this.packages.length; i++) {
+      acum += this.packages[i].price;
+    }
+
+    return acum;
   }
 }

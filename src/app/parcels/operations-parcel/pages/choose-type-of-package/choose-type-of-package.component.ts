@@ -19,6 +19,9 @@ export class ChooseTypeOfPackageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeButton = this.backButtonEnable.getEnableButton;
+    if (this.backButtonEnable.getActiveTitle) {
+      this.backButtonEnable.modifyTitleActive();
+    }
   }
 
   public getPathToEditReceiver(): string {

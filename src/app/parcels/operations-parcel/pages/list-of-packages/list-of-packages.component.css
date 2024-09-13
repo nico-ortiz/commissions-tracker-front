@@ -3,10 +3,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+  color: var(--blue);
 }
 
 .cards-container {
   margin: 20px 0;
+  color: var(--blue);
 }
 
 .alert {
@@ -68,9 +70,44 @@
   max-width: 225px;
 }
 
-.cards-container .package-card .actions-btns {
+.cards-container .package-card .items-container {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
+  align-items: end;
+
+  border-top: 1px solid grey;
+  padding-top: 5px;
+
+  height: 44px;
+}
+
+.cards-container .package-card .items-container.modify {
+  justify-content: flex-end;
+}
+
+.cards-container .package-card .items-container .bigger-details {
+  padding-bottom: 5px;
+  font-size: .7rem;
+  color: var(--blue);
+  width: 60%;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.cards-container .package-card .items-container .bigger-details.modify {
+  justify-content: flex-end;
+}
+
+.cards-container .package-card .items-container .bigger-details .details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cards-container .package-card .items-container .actions-btns {
+  display: flex;
+  justify-content: left;
 }
 
 .cards-container .package-card .actions-btns .btns {
@@ -85,6 +122,29 @@
 
 .cards-container .package-card .actions-btns .btns > mat-icon {
   font-size: 1.1rem;
+}
+
+.info {
+  border-top: 1px solid grey;
+  padding-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info .receiver-details > h3 {
+  margin-bottom: 5px;
+}
+
+.info .receiver-details > p {
+  margin-bottom: 2px;
+}
+
+.info .total-price {
+  width: 30%;
+  display: flex;
+  gap: 20px;
 }
 
 .btns-container {
