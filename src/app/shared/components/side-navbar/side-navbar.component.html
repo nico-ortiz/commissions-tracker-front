@@ -14,16 +14,14 @@
     <ul class="container-links" >
       <li
         class="nav-links open-sans-600"
-        routerLink="/home"
         routerLinkActive="active"
-        (click)="onToggleBtnStatus()">
+        (click)="deleteCommission('/home')">
         <mat-icon class="nav-links-icons" fontIcon="home"></mat-icon> Inicio
       </li>
       <li
         class="nav-links open-sans-600"
-        routerLink="/parcels/quote"
         routerLinkActive="active"
-        (click)="onToggleBtnStatus()">
+        (click)="deleteCommission('/parcels/quote')">
         <mat-icon class="nav-links-icons" fontIcon="attach_money"></mat-icon> Cotizar envio
       </li>
       <li
@@ -35,9 +33,8 @@
       </li>
       <li
         class="nav-links open-sans-600"
-        routerLink="/parcels/tracking-parcel"
         routerLinkActive="active"
-        (click)="onToggleBtnStatus()">
+        (click)="deleteCommission('/parcels/tracking-parcel')">
         <mat-icon class="nav-links-icons" fontIcon="access_time"></mat-icon> Seguir envio
       </li>
       <li

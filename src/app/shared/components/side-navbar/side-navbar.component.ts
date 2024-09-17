@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToggleButtonService } from '../../services/toggle-button.service';
 import { animate, style, transition, trigger } from '@angular/animations';
-
+import { PackageService } from '../../../parcels/operations-parcel/services/package.service';
 @Component({
   selector: 'shared-side-navbar',
   templateUrl: './side-navbar.component.html',
@@ -24,7 +24,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class SideNavbarComponent {
 
   constructor(
-    private toggleBtn: ToggleButtonService
+    private toggleBtn: ToggleButtonService,
+    private packageService: PackageService
   ) {}
 
   public getToggleBtnStatus(): boolean {
@@ -33,5 +34,10 @@ export class SideNavbarComponent {
 
   public onToggleBtnStatus(): void {
     this.toggleBtn.toggleSideNavBar();
+  }
+
+  public deleteCommission(path: string): void {
+    this.onToggleBtnStatus();
+    this.packageService.deleteAllData(path);
   }
 }

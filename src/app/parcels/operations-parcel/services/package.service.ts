@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, filter, map, Observable, of, switchMap, tap } from 'rxjs';
 
 import { environments } from '../../../../environments/environments';
 import { NewCommission } from '../interfaces/new-commission.interface';
@@ -11,6 +11,11 @@ import { IPackage } from '../interfaces/package.interface';
 import { IEnvelope } from '../interfaces/envelope.interface';
 import { IParcel } from '../interfaces/parcel.interface';
 import { IBigger } from '../interfaces/bigger.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { ReceiverService } from './receiver.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +27,11 @@ export class PackageService {
 
   constructor(
     private http: HttpClient,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private dialog: MatDialog,
+    private receiverService: ReceiverService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   public createCommission(commission: NewCommission): Observable<Commission> {
@@ -130,5 +139,46 @@ export class PackageService {
         map(result => true),
         catchError(err => of(false))
       );
+  }
+
+  public deleteAllData(path: string): void {
+    if (this.localStorage.getData("receiverId") || this.localStorage.getData("commissionId")) {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, 
+        {data: `Si sale se eliminaran los datos cargados`});
+
+      dialogRef.afterClosed()
+        .pipe(
+          filter(result => result),
+          switchMap(() => this.receiverService.deleteReceiver(this.localStorage.getEncryptedData("receiverId"))),
+          filter(wasDeleted => wasDeleted)
+        )
+        .pipe(
+          filter(result => result),
+          switchMap(() => this.deleteCommission(this.localStorage.getEncryptedData("commissionId"))),
+          filter(wasDeleted => wasDeleted)
+        )
+        .pipe(
+          map(() => {
+            this.localStorage.removeEncryptedData("receiverId");
+            this.localStorage.removeEncryptedData("commissionId");
+          }),
+        )
+        .subscribe(() => {
+          this.showSnackbar(`Datos eliminados`);
+          setTimeout(() => {
+            this.router.navigate([path])
+          }, 3000);
+        });
+    } else {
+      setTimeout(() => {
+        this.router.navigate([path])
+      }, 3000);
+    }
+  }
+
+  public showSnackbar(message: string): void {
+    this.snackBar.open(message, 'done', {
+      duration: 3000,
+    })
   }
 }
