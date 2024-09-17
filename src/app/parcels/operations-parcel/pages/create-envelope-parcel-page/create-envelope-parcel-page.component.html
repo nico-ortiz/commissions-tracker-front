@@ -1,0 +1,44 @@
+<shared-back-button
+  *ngIf="activeButton "
+  link="/parcels/make-parcel/create-packages/choose-type-of-package"
+  text="Volver atras">
+</shared-back-button>
+<shared-back-button
+  *ngIf="!activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+  (click)="modifyActiveButton()">
+</shared-back-button>
+<h1 class="open-sans-700">
+  {{this.updatedTitle ? "Modifique la descripción" : "Ingrese una breve descripción por favor"}}
+</h1>
+<form class="form" (submit)="onSubmit()" [formGroup]="envelopeForm">
+  <label for="text-area" class="open-sans-700">Descripción acerca del sobre:</label>
+  <textarea
+    name="description-text-area"
+    id="text-area"
+    formControlName="description"
+    rows="10"
+    cols="80"
+    placeholder="Es posible que le entreguen otro sobre para traer desde alla..."></textarea>
+  <shared-error-field
+    field="description"
+    [form]="envelopeForm"
+  ></shared-error-field>
+  <button
+    *ngIf="this.updatedTitle"
+    type="button"
+    (click)="onSubmit()"
+    class="btn open-sans-600"
+    [disabled]="!isValidForm || isPristineForm"
+    >
+    Modificar
+  </button>
+  <button
+    *ngIf="!this.updatedTitle"
+    class="btn open-sans-600"
+    type="submit"
+    [disabled]="!isValidForm">
+    Continuar
+  </button>
+</form>

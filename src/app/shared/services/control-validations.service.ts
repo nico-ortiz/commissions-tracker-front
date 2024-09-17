@@ -30,6 +30,10 @@ export class ControlValidationsService {
         case 'pattern':
           return 'La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula,\n'+
            'un número y un caracter especial';
+        case 'min':
+          return `Mínimo ${errors['min'].min} como valor`;
+        case 'max':
+          return `Máximo ${errors['max'].max} como valor`;
       }
     }
 

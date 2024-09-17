@@ -1,20 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { ParcelsRoutingModule } from './parcels-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
+import { ParcelsRoutingModule } from './parcels-routing.module';
+import { QuoteParcelPageComponent } from './pages/quote-parcel-page/quote-parcel-page.component';
 import { SharedModule } from '../shared/shared.module';
-import { HomePageComponent } from '../shared/pages/home-page/home-page.component';
+import { TrackingParcelPageComponent } from './pages/tracking-parcel-page/tracking-parcel-page.component';
 
 
 @NgModule({
   declarations: [
-    LayoutPageComponent
+    LayoutPageComponent,
+    QuoteParcelPageComponent,
+    TrackingParcelPageComponent,
   ],
   imports: [
     CommonModule,
+    MatIconModule,
     ParcelsRoutingModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class ParcelsModule { }

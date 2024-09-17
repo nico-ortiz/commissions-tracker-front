@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 import { ErrorFieldComponent } from './components/error-field/error-field.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedRoutingModule } from './shared-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 
 
@@ -15,16 +19,22 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     HomePageComponent,
     ConfirmDialogComponent,
+    SideNavbarComponent,
+    BackButtonComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    SharedRoutingModule
   ],
   exports: [
+    BackButtonComponent,
     ErrorFieldComponent,
     HeaderComponent,
-    HomePageComponent
+    HomePageComponent,
+    SideNavbarComponent,
   ]
 })
 export class SharedModule { }

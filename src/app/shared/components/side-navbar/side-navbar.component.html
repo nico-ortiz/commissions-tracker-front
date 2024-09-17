@@ -1,0 +1,54 @@
+<div
+  class="side-navbar-container"
+  *ngIf="getToggleBtnStatus()"
+  [@enterAnimation]
+  (click)="onToggleBtnStatus()"
+  >
+  <nav
+    class="side-navbar">
+    <button
+      class="close-btn"
+      (click)="onToggleBtnStatus()">
+      <mat-icon class="close-menu-icon">close</mat-icon>
+    </button>
+    <ul class="container-links" >
+      <li
+        class="nav-links open-sans-600"
+        routerLinkActive="active"
+        (click)="deleteCommission('/home')">
+        <mat-icon class="nav-links-icons" fontIcon="home"></mat-icon> Inicio
+      </li>
+      <li
+        class="nav-links open-sans-600"
+        routerLinkActive="active"
+        (click)="deleteCommission('/parcels/quote')">
+        <mat-icon class="nav-links-icons" fontIcon="attach_money"></mat-icon> Cotizar envio
+      </li>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/parcels/make-parcel"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="local_shipping"></mat-icon> Hacer envio
+      </li>
+      <li
+        class="nav-links open-sans-600"
+        routerLinkActive="active"
+        (click)="deleteCommission('/parcels/tracking-parcel')">
+        <mat-icon class="nav-links-icons" fontIcon="access_time"></mat-icon> Seguir envio
+      </li>
+      <li
+        class="nav-links open-sans-600"
+        routerLink="/home"
+        routerLinkActive="active"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="account_circle"></mat-icon> Mi perfil
+      </li>
+      <li
+        class="nav-links open-sans-600"
+        (click)="onToggleBtnStatus()">
+        <mat-icon class="nav-links-icons" fontIcon="logout"></mat-icon> Cerrar sesion
+      </li>
+    </ul>
+  </nav>
+</div>

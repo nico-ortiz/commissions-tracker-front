@@ -1,0 +1,77 @@
+<shared-back-button
+  *ngIf="this.activeButton"
+  link="/parcels/make-parcel/create-packages/choose-type-of-package"
+  text="Volver atras"
+></shared-back-button>
+<shared-back-button
+  *ngIf="!this.activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+></shared-back-button>
+<h1 class="open-sans-700">
+  {{this.updateTitle ? "Modifique los datos" : "Complete los datos del paquete a enviar"}}
+</h1>
+<form class="form" [formGroup]="biggerForm" (ngSubmit)="onSubmit()">
+  <div class="input-container">
+    <div class="inputs">
+      <label for="height-input" class="open-sans-700">Ingrese el alto del paquete:</label>
+      <span class="text">
+        <input type="number" placeholder="90" formControlName="height"> cm.
+      </span>
+      <shared-error-field
+        field="height"
+        [form]="biggerForm"
+      ></shared-error-field>
+    </div>
+    <div class="inputs">
+      <label for="width-input" class="open-sans-700">Ingrese el ancho del paquete:</label>
+      <span class="text">
+        <input type="number" placeholder="70" formControlName="width">cm.
+      </span>
+      <shared-error-field
+        field="width"
+        [form]="biggerForm"
+      ></shared-error-field>
+    </div>
+    <div class="inputs">
+      <label for="weight-input" class="open-sans-700">Ingrese el peso del paquete:</label>
+      <span class="text">
+        <input type="number" placeholder="55" formControlName="weight">kgs.
+      </span>
+      <shared-error-field
+        field="weight"
+        [form]="biggerForm"
+      ></shared-error-field>
+    </div>
+  </div>
+  <div class="description-container">
+    <label for="text-area" class="open-sans-700">Descripción acerca del paquete:</label>
+    <textarea
+      name="description-text-area"
+      id="text-area"
+      formControlName="description"
+      rows="10"
+      cols="80"
+      placeholder="Caja de vacunas, mantener en frio..."></textarea>
+    <shared-error-field
+      field="description"
+      [form]="biggerForm"
+    ></shared-error-field>
+  </div>
+  <button
+    *ngIf="this.updateTitle"
+    type="button"
+    (click)="onSubmit()"
+    class="btn open-sans-600"
+    [disabled]="!isValidForm || isPristineForm"
+    >
+    Modificar
+  </button>
+  <button
+    *ngIf="!this.updateTitle"
+    class="btn open-sans-600"
+    type="submit"
+    [disabled]="!isValidForm">
+    Continuar
+  </button>
+</form>

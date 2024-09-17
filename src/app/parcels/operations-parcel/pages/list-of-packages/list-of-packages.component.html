@@ -1,0 +1,96 @@
+<div class="header">
+  <h1 class="open-sans-700 title">Listado de paquetes</h1>
+  <button
+    class="btn open-sans-600"
+    (click)="addNewPackage()">
+    <mat-icon>add</mat-icon>
+    Agregar nuevo paquete a la comisión
+  </button>
+</div>
+<hr>
+<div class="cards-container">
+  <div
+    class="alert"
+    *ngIf="this.packages.length === 0; else listOfPackages">
+    La encomienda correspondiente no contiene paquetes
+  </div>
+
+  <ng-template #listOfPackages>
+    <div class="cards">
+      <article class="package-card" *ngFor="let package of this.packages; let i = index">
+        <div class="title-container">
+          <img class="img-card"
+            [src]="imageByPackageType(package.packageType.toString()).src"
+            [alt]="imageByPackageType(package.packageType.toString()).alt"
+            width="64"
+            height="64">
+          <div class="text-container">
+            <h4 class="title-card">{{package.packageType.toString().replace('_',' ')}}</h4>
+            <p class="price-card">Precio: ARS $ {{package.price}}</p>
+          </div>
+        </div>
+        <p class="description-card">{{package.description}}</p>
+        <div class="items-container" 
+          [ngClass]="{'modify': package.packageType !== 'BIGGER'}">
+          <div *ngIf="package.packageType === 'BIGGER'" class="bigger-details">
+            <span class="details">
+              Ancho
+              <span>{{package.width}}cm</span>
+            </span>
+            <span class="details">
+              Peso
+              <span>{{package.weight}}kgs</span>
+            </span>
+            <span class="details">
+              Alto
+              <span>{{package.height}}cm</span>
+            </span>
+          </div>
+          <div class="actions-btns">
+            <button
+              type="button"
+              class="btns"
+              (click)="deletePackage(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              class="btns"
+              type="button"
+              (click)="updatePackage(i)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="info">
+      <div class="receiver-details">
+        <h3>Destinatario</h3>
+        <p><strong>Nombre:</strong> {{receiver.firstName}} {{receiver.lastName}}</p>
+        <p><strong>Dirección:</strong> {{receiver.address}}</p>
+        <p><strong>Teléfono:</strong> {{receiver.phoneNumber}}</p>
+      </div>
+      <div class="total-price">
+        <p>
+          <strong>
+            Precio total:
+          </strong>
+        </p>
+        <span>${{totalPrice() | number}}ARS</span>
+      </div>
+    </div>
+  </ng-template>
+  <div class="btns-container">
+    <button
+      class="btn open-sans-600"
+      [routerLink]="getPathToUpdateReceiver()"
+      (click)="modifyButtonActivity()">
+      <mat-icon>edit</mat-icon>
+      Modificar datos de destinatario
+    </button>
+    <button class="btn open-sans-600">
+      <mat-icon>arrow_forward</mat-icon>
+      Finalizar
+    </button>
+  </div>
+</div>

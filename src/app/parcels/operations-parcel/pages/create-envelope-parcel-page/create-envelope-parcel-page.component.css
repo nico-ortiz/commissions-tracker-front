@@ -1,0 +1,63 @@
+h1 {
+  margin: 20px 0;
+  color: var(--blue);
+}
+
+.form {
+  display: grid;
+}
+
+.form > label {
+  margin-bottom: 10px;
+  color: var(--blue);
+}
+
+.form #text-area {
+  resize: none;
+  max-width: 80%;
+  min-width: 80%;
+
+  padding: 8px 2px;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.form #text-area::placeholder {
+  color: transparent;
+  transition: all .1s ease-in;
+}
+
+.form #text-area:hover::placeholder {
+  color: rgb(150, 150, 150);
+}
+
+.form .btn {
+  margin-top: 70px;
+  float: right;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 30px;
+  width: 20%;
+  position: relative;
+
+  font-size: 1.2rem;
+  background-color: var(--yellow);
+  color: white;
+  cursor: pointer;
+  transition: all .1s ease-in;
+  justify-self: end;
+}
+
+.form .btn:hover {
+  transform: scale(1.02);
+}
+
+.form .btn:disabled {
+  opacity: .4;
+  cursor: auto;
+}
+
+.form .btn:disabled:hover {
+  transform: none;
+}

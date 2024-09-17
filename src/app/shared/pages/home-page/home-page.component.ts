@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BackButtonService } from '../../services/back-button.service';
 
 @Component({
   selector: 'shared-home-page',
@@ -10,8 +11,16 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public currentParagraph : number = 1;
   private interval: any;
 
+  constructor(
+    private backButtonService: BackButtonService
+  ) {}
+
   ngOnInit(): void {
     this.intervalStart();
+
+    if (!this.backButtonService.getEnableButton) {
+      this.backButtonService.setEnableButtton = !this.backButtonService.getEnableButton;
+    }
   }
 
   ngOnDestroy(): void {

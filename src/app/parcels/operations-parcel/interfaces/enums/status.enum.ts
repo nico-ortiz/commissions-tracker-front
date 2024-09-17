@@ -1,0 +1,3 @@
+export enum Status {
+  EN_PREPARACION, EN_PROGRESO, ENTREGADO
+}

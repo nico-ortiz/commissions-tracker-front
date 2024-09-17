@@ -1,0 +1,7 @@
+export enum PackageType {
+  SOBRE = "SOBRE",
+  CAJA_CHICA = "CAJA_CHICA",
+  CAJA_MEDIANA = "CAJA_MEDIANA",
+  CAJA_GRANDE = "CAJA_GRANDE",
+  BIGGER = "BIGGER"
+}

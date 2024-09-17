@@ -1,0 +1,54 @@
+<shared-back-button
+  *ngIf="this.activeButton"
+  link="/parcels/make-parcel/create-packages/choose-type-of-package"
+  text="Volver atras"
+></shared-back-button>
+<shared-back-button
+  *ngIf="!this.activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+></shared-back-button>
+<h1>
+  {{!this.activeTitle ? "Complete los datos del paquete a enviar" : "Modifique los datos"}}
+</h1>
+<form class="form" [formGroup]="parcelForm" (ngSubmit)="onSubmit()">
+  <label for="size-options" class="open-sans-700">Seleccione el tamaño del paquete:</label>
+  <select name="size-options" id="size-options" formControlName="packageType">
+    <option class="option-group" selected disabled>Seleccione el tamaño</option>
+    <option value="CAJA_CHICA">Paquete pequeño (5kg - 15kg)</option>
+    <option value="CAJA_MEDIANA">Paquete mediano (16kg - 30kg)</option>
+    <option value="CAJA_GRANDE">Paquete grande (31kg - 50kg)</option>
+  </select>
+  <shared-error-field
+    field="packageType"
+    [form]="parcelForm"
+  ></shared-error-field>
+  <label for="text-area" class="open-sans-700">Descripción acerca del paquete:</label>
+  <textarea
+    name="description-text-area"
+    id="text-area"
+    formControlName="description"
+    rows="10"
+    cols="80"
+    placeholder="Caja de vacunas, mantener en frio..."></textarea>
+  <shared-error-field
+    field="description"
+    [form]="parcelForm"
+  ></shared-error-field>
+  <button
+    *ngIf="this.activeTitle"
+    type="button"
+    (click)="onSubmit()"
+    class="btn open-sans-600"
+    [disabled]="!isValidForm || isPristineForm"
+    >
+    Modificar
+  </button>
+  <button
+    *ngIf="!this.activeTitle"
+    class="btn open-sans-600"
+    type="submit"
+    [disabled]="!isValidForm">
+    Continuar
+  </button>
+</form>

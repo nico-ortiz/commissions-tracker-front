@@ -1,0 +1,108 @@
+<shared-back-button
+  *ngIf="activeButton"
+  text="Volver atras"
+  (click)="alert()"></shared-back-button>
+<shared-back-button
+  *ngIf="!activeButton"
+  link="/parcels/make-parcel/create-packages/list-of-packages"
+  text="Cancelar"
+  (click)="modifyEnableButton()"></shared-back-button>
+<h1 class="title open-sans-700">
+  {{!this.getCurrentReceiver.receiverId ? "Rellene datos para realizar encomienda" : "En caso de ser necesario puede modificar los datos del destinatario"}}
+</h1>
+<hr>
+<form
+  class="form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <h3 class="form-title open-sans-500">Datos del destinatario</h3>
+  <hr>
+  <div class="form-field-container">
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Nombre</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="firstName" placeholder="Nombre">
+      <shared-error-field
+        field="firstName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Apellido</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="lastName" placeholder="Apellido">
+      <shared-error-field
+        field="lastName"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Dirección</label>
+      <input id="nameImput" type="text" class="form-control" formControlName="address" placeholder="Dirección">
+      <shared-error-field
+        field="address"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Télefono</label>
+      <input id="nameImput" type="tel" class="form-control" formControlName="phoneNumber" placeholder="Télefono">
+      <shared-error-field
+        field="phoneNumber"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field">
+      <label for="nameInput" class="form-label">Fecha a realizar</label>
+      <input id="nameImput" type="date" [min]="today" class="form-control" formControlName="date" placeholder="Fecha">
+      <shared-error-field
+        field="date"
+        [form]="form"
+      ></shared-error-field>
+    </div>
+    <div class="form-field times-container">
+      <div class="opening-time-container">
+        <label for="nameInput" class="form-label">Horario de apertura</label>
+        <input id="nameImput" type="time" class="form-control" formControlName="openingHour" placeholder="Horario de apertura">
+        <shared-error-field
+        field="openingHour"
+        [form]="form"
+      ></shared-error-field>
+      </div>
+      <div class="closing-time-container">
+        <label for="nameInput" class="form-label">Horario de cierre</label>
+        <input id="nameImput" type="time" class="form-control" formControlName="closingHour" placeholder="Horario de cierre">
+        <shared-error-field
+        field="closingHour"
+        [form]="form"
+      ></shared-error-field>
+      </div>
+    </div>
+  </div>
+  <div class="btns-container">
+    <button
+      *ngIf="getCurrentReceiver.receiverId"
+      type="button"
+      [disabled]="!isValidForm || isPristineForm"
+      class="btn open-sans-600"
+      (click)="onSubmit()">
+      Modificar
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      *ngIf="!getCurrentReceiver.receiverId"
+      type="submit"
+      [disabled]="!isValidForm"
+      class="btn open-sans-600">
+      Guardar
+      <mat-icon>save</mat-icon>
+    </button>
+    <button
+      *ngIf="this.activeButton"
+      type="button"
+      [disabled]="!getCurrentReceiver.receiverId || !isValidForm"
+      class="btn open-sans-600"
+      (click)="addNewPackage()">
+      Continuar
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </div>
+</form>
